@@ -19,7 +19,7 @@
   
   .main {
     flex: 1;
-    padding-bottom: 45px;
+    /* padding-bottom: 45px; */
   }
   
   
@@ -97,6 +97,10 @@
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-style: normal;
 
+}
+
+h2.title.sign_in {
+  padding: 15px 0;
 }
 
 
