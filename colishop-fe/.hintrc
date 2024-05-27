@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "background-clip",
+          "-webkit-text-size-adjust",
+          "@-ms-viewport",
+          "@-ms-viewport"
+        ]
+      }
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_chr <= 114",
+    "not and_ff <= 113",
+    "not chrome <= 113",
+    "not edge <= 113",
+    "not firefox <= 113",
+    "not ios_saf <= 16.5",
+    "not opera <= 98",
+    "not safari <= 16.4",
+    "not samsung <= 21"
+  ]
+}

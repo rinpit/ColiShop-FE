@@ -1,0 +1,103 @@
+
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* Adjust as needed to account for header/footer */
+  }
+
+
+
+  /* public/assets/css/SignInPage.css */
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
+  }
+  
+  .main {
+    flex: 1;
+    padding-bottom: 45px;
+  }
+  
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .breadcrumb-nav .breadcrumb {
+    background: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .breadcrumb-nav .breadcrumb-item a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .breadcrumb-nav .breadcrumb-item a:hover {
+    text-decoration: underline;
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* Adjust this value to account for header/footer if needed */
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: Add border radius to the image */
+  }
+  
+  /* Font styling for the SignInComponent */
+  .sign-in-form {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+  }
+  
+  .sign-in-form h2 {
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sign-in-form .form-control {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .sign-in-form .btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+  /* signInPage.css */
+.page-header {
+    text-align: center;
+  }
+  
+.page-header .container h1 {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: normal;
+
+}
+
+
+

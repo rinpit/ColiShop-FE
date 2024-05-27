@@ -12,76 +12,80 @@ import ProductDetailPage from "../pages/ProductDetailPage/ProductDetailPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import WishListPage from "../pages/WishListPage/WishListPage";
 import SignInPage from "../pages/SignInPage/SignInPage";
-
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 export const routes = [
-    {
-        path: "/",
-        page: HomePage,
-        isShowHeader: true
-    },
-    {
-        path: "/order",
-        page: OrderPage,
-        isShowHeader: true
-    },
-    {
-        path: "/productdetail",
-        page: ProductDetailPage,
-        isShowHeader: true
-    },
-    {
-        path: "/categories",
-        page: CategoriesPage,
-        isShowHeader: true
-    },
-    {
-        path: "/aboutus",
-        page: AboutUsPage,
-        isShowHeader: true
-    },
-    {
-        path: "/blog",
-        page: BlogPage,
-        isShowHeader: true
-    },
-    {
-        path: "/blogdetail",
-        page: BlogDetailPage,
-        isShowHeader: true
-    },
-    {
-        path: "/cart",
-        page: CartPage,
-        isShowHeader: true
-    },
-    {
-        path: "/checkout",
-        page: CheckOutPage,
-        isShowHeader: true
-    },
-    {
-        path: "/wishlist",
-        page: WishListPage,
-        isShowHeader: true
-    },
-    {
-        path: "/signin",
-        page: SignInPage,
-        isShowHeader: true
-    },
-    {
-        path: "/signup",
-        page: SignUpPage,
-        isShowHeader: true
-    },
-    {
-        path: "/forgotpassword",
-        page: ForgotPasswordPage,
-        isShowHeader: true
-    },
-    {
-        path: "*",
-        page: NotFoundPage
-    }
-
-]
+  {
+    path: "/",
+    page: HomePage,
+    isShowHeader: true,
+  },
+  {
+    path: "/order",
+    page: OrderPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/productdetail",
+    page: ProductDetailPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/categories",
+    page: CategoriesPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/aboutus",
+    page: AboutUsPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/blog",
+    page: BlogPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/blogdetail",
+    page: BlogDetailPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/cart",
+    page: CartPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/checkout",
+    page: CheckOutPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/wishlist",
+    page: WishListPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/signin",
+    page: SignInPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/signup",
+    page: SignUpPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/forgotpassword",
+    page: ForgotPasswordPage,
+    isShowHeader: true,
+  },
+  {
+    path: "*",
+    page: NotFoundPage,
+  },
+  {
+    path: "/profile",
+    page: ProfilePage,
+    isShowHeader: true,
+  },
+];
