@@ -1,6 +1,6 @@
 import React from 'react'
 import SignInComponent from '../../components/SignInComponent/SignInComponent'
-import SignUpComponent from '../../components/SignUpComponent/SignUpComponent'
+
 
 const SignInPage = () => {
     return (
@@ -27,8 +27,7 @@ const SignInPage = () => {
                     <div className="row">
                         <div className="col-lg-10 mx-auto">
                             <div className="row">
-                                <SignInComponent/>
-                                <SignUpComponent/>   
+                                <SignInComponent/>  
                             </div>
                         </div>
                     </div>

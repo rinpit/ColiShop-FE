@@ -1,6 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 var HeaderComponent = () => {
+
+
+  
+  const navigate = useNavigate()
+  const handNavigateLogin = () => {
+    navigate('/signin')
+  }
+
+
   return (
     <div className="page-wrapper">
 
@@ -24,23 +34,42 @@ var HeaderComponent = () => {
             </div>
 
             <div className="header-right">
-              <a href="/signin" className="header-icon d-lg-block d-none">
+              {/* <a href="/signin" className="header-icon d-lg-block d-none">
                 <div className="header-user">
                   <i className="icon-user-2" />
                   <div className="header-userinfo">
                     <span class="d-inline-block font2 line-height-1">Hello!</span>
                     <h4 class="mb-0">My Account</h4>
-                    <h4 class="mb-0">Login</h4>
+                    <div>
+                      <h4 class="mb-0">Login</h4>
+                    </div>
+                  </div>
+                </div>
+              </a> */}
+
+              <a href="/signin" className="header-icon d-lg-block d-none">
+                <div className="header-user">
+                  <i className="icon-user-2" />
+                  <div className="header-userinfo">
+                    <div onClick={handNavigateLogin}>
+                    <h4 class="mb-0">Sign In/ Sign Up</h4>
+                    </div>
+                    {/* <span class="d-inline-block font2 line-height-1">Hello!</span>
+                    <h4 class="mb-0">My Account</h4>
+                    <div>
+                    </div> */}
                   </div>
                 </div>
               </a>
+
+
 
               <a href="/wishlist" className="header-icon">
                 <i className="icon-wishlist-2" />
               </a>
 
               <div className="dropdown cart-dropdown">
-                <a href="/cart" title="Cart" className="dropdown-toggle cart-toggle" 
+                <a href="/cart" title="Cart" className="dropdown-toggle cart-toggle"
                 // role="button" 
                 // data-toggle="dropdown" 
                 // aria-haspopup="true" 

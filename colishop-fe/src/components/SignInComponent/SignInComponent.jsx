@@ -24,6 +24,8 @@ const SignInComponent = () => {
                         <label className="custom-control-label mb-0" htmlFor="lost-password">Remember me</label>
                     </div>
                     <a href="/forgotpassword" className="forget-password text-dark form-footer-right">Forgot Password?</a>
+                    <a href="/signup" className="forget-password text-dark form-footer-right">Sign Up?</a>
+
                 </div>
                 <button type="submit" className="btn btn-dark btn-md w-100">Sign In</button>
             </form>

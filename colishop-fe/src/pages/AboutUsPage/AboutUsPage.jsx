@@ -74,7 +74,7 @@ const AboutUsPage = () => {
                             </div>{/* End .row */}
                         </div>{/* End .container */}
                     </div>{/* End .features-section */}
-                    
+
                     <div className="testimonials-section">
                         <div className="container">
                             <h2 className="subtitle text-center">HAPPY CLIENTS</h2>
