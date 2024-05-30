@@ -1,0 +1,21 @@
+/* .signUpForm label {
+  font-size: 2rem;
+} 
+   */
+  
+   h2.title.sign_up {
+    padding: 20px 15px 0 0;
+}
+
+.signup-container form label {
+  margin-bottom: 0.7rem;
+  color: #777;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.signup-container form .btn {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.6rem;
+}

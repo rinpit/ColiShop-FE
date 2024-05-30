@@ -68,26 +68,7 @@
   }
   
   /* Font styling for the SignInComponent */
-  .sign-in-form {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-  }
-  
-  .sign-in-form h2 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
-  
-  .sign-in-form .form-control {
-    font-size: 1rem;
-    padding: 0.75rem;
-  }
-  
-  .sign-in-form .btn {
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-  }
+
   /* signInPage.css */
 .page-header {
     text-align: center;
