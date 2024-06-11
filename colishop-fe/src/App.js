@@ -5,6 +5,7 @@ import DefaultComponent from './components/DefaultComponent/DefaultComponent'
 import { Fragment } from 'react'
 import axios from 'axios'
 import { useQuery } from 'react-query'
+import { ToastContainer } from 'react-toastify'
 
 
 function App() {
@@ -20,11 +21,12 @@ function App() {
     return res.data
   }
 
-  const query = useQuery({queryKey: ['todos'], queryFn: fetchApi})
+  const query = useQuery({ queryKey: ['todos'], queryFn: fetchApi })
   console.log("query", query.data)
 
   return (
     <>
+      <ToastContainer />
       <Router>
         <Routes>
           {routes.map((route) => {

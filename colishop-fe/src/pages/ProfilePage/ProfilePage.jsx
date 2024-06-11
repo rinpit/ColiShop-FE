@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "../../style/profile.css"; // Custom CSS for additional styling
 
@@ -32,7 +32,7 @@ const ProfilePage = ({ account, handleChange }) => {
       >
         <span className="mask bg-gradient-default opacity-8"></span>
         <div className="container-fluid d-flex align-items-center">
-          <div className="row">
+          <div className="row_profile">
             <div className="col-lg-7 col-md-10">
               <h1 className="display-2 text-white" style={{ fontSize: "50px" }}>
                 Hello {/* Hello {account.firstName} {account.lastName} */}
@@ -53,10 +53,10 @@ const ProfilePage = ({ account, handleChange }) => {
         </div>
       </div>
       <div className="container-fluid mt--7">
-        <div className="row">
+        <div className="row_profile">
           <div className="col-xl-4 order-xl-2 mb-5 mb-xl-0">
             <div className="card card-profile shadow">
-              <div className="row justify-content-center">
+              <div className="row_profile justify-content-center">
                 <div className="col-lg-3 order-lg-2">
                   <div className="card-profile-image">
                     <a href="#">
@@ -98,7 +98,7 @@ const ProfilePage = ({ account, handleChange }) => {
           <div className="col-xl-8 order-xl-1">
             <div className="card bg-secondary shadow">
               <div className="card-header bg-white border-0">
-                <div className="row align-items-center">
+                <div className="row_profile align-items-center">
                   <div className="col-8">
                     <h3 className="mb-0" style={{ fontSize: "15px" }}>
                       My account
@@ -112,7 +112,7 @@ const ProfilePage = ({ account, handleChange }) => {
                     User information
                   </h6>
                   <div className="pl-lg-4">
-                    <div className="row">
+                    <div className="row_profile">
                       <div className="col-lg-6">
                         <div className="form-group focused">
                           <label
@@ -158,7 +158,7 @@ const ProfilePage = ({ account, handleChange }) => {
                     Contact information
                   </h6>
                   <div className="pl-lg-4">
-                    <div className="row">
+                    <div className="row_profile">
                       <div className="col-md-12">
                         <div className="form-group focused">
                           <label
@@ -179,7 +179,7 @@ const ProfilePage = ({ account, handleChange }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="row">
+                    <div className="row_profile">
                       <div className="col-lg-4">
                         <div className="form-group focused">
                           <label
@@ -247,7 +247,7 @@ const ProfilePage = ({ account, handleChange }) => {
                     <div className="form-group focused">
                       <label>About Me</label>
                       <textarea
-                        rows="4"
+                        row_profiles="4"
                         className="form-control form-control-alternative"
                         placeholder="A few words about you ..."
                         name="aboutMe"

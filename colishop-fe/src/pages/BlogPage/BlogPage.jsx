@@ -115,9 +115,12 @@ const BlogPage = () => {
                                 </div>
                             </div>
                         </div>{/* End .col-lg-9 */}
+
+                        
                         <div className="sidebar-toggle custom-sidebar-toggle">
                             <i className="fas fa-sliders-h" />
                         </div>
+
                         <div className="sidebar-overlay" />
                         <aside className="sidebar mobile-sidebar col-lg-3">
                             <div className="sidebar-wrapper" data-sticky-sidebar-options="{&quot;offsetTop&quot;: 72}">

@@ -1,6 +1,32 @@
-import React from "react";
-
+import axios from "axios";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useHistory, useNavigate } from "react-router-dom"
 const SignInComponent = () => {
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const navigation = useNavigate()
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("info", email + password)
+      const response = await axios.post("http://localhost:3001/api/user/sign-in", { email, password })
+      if (response.status === 200) {
+        navigation("/")
+        toast.success("Login succesfully");
+        console.log(response.data)
+        localStorage.setItem("token", response.data.access_token)
+
+      } else {
+        alert("Loi dang nhap")
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
   return (
     <div className="col-md-10">
       <div className="sign-in-heading mb-1 text-center">
@@ -16,6 +42,8 @@ const SignInComponent = () => {
           className="form-input form-wide"
           id="login-email"
           required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <label htmlFor="login-password">
           Password
@@ -26,6 +54,7 @@ const SignInComponent = () => {
           className="form-input form-wide"
           id="login-password"
           required
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <div className="form-footer">
@@ -49,7 +78,7 @@ const SignInComponent = () => {
             Forgot Password?
           </a>
         </div>
-        <button type="submit" className="btn btn-dark btn-md w-100">
+        <button className="btn btn-dark btn-md w-100" onClick={handleLogin}>
           Sign In
         </button>
       </form>
