@@ -34,68 +34,49 @@ const CartPage = () => {
                                             <td>
                                                 <figure className="product-image-container">
                                                     <a href="product.html" className="product-image">
-                                                        <img src="assets/images/products/product-4.jpg" alt="product" />
+                                                        <img src="assets/images/products/product-01.jpg" alt="product" />
                                                     </a>
                                                     <a href="#" className="btn-remove icon-cancel" title="Remove Product" />
                                                 </figure>
                                             </td>
                                             <td className="product-col">
                                                 <h5 className="product-title">
-                                                    <a href="product.html">Men Watch</a>
+                                                    <a href="product.html">Turtleneck Sweater H&M</a>
                                                 </h5>
                                             </td>
-                                            <td>$17.90</td>
+                                            <td>259.000 VNĐ</td>
                                             <td>
                                                 <div className="product-single-qty">
                                                     <input className="horizontal-quantity form-control" type="text" />
                                                 </div>{/* End .product-single-qty */}
                                             </td>
-                                            <td className="text-right"><span className="subtotal-price">$17.90</span></td>
+                                            <td className="text-right"><span className="subtotal-price">259.000 VNĐ</span></td>
                                         </tr>
+
                                         <tr className="product-row">
                                             <td>
                                                 <figure className="product-image-container">
                                                     <a href="product.html" className="product-image">
-                                                        <img src="assets/images/products/product-3.jpg" alt="product" />
+                                                        <img src="assets/images/products/product-0.jpg" alt="product" />
                                                     </a>
                                                     <a href="#" className="btn-remove icon-cancel" title="Remove Product" />
                                                 </figure>
                                             </td>
                                             <td className="product-col">
                                                 <h5 className="product-title">
-                                                    <a href="product.html">Men Watch</a>
+                                                    <a href="product.html">Jasambac</a>
                                                 </h5>
                                             </td>
-                                            <td>$17.90</td>
+                                            <td>102.000 VNĐ</td>
                                             <td>
                                                 <div className="product-single-qty">
                                                     <input className="horizontal-quantity form-control" type="text" />
                                                 </div>{/* End .product-single-qty */}
                                             </td>
-                                            <td className="text-right"><span className="subtotal-price">$17.90</span></td>
+                                            <td className="text-right"><span className="subtotal-price">102.000 VNĐ</span></td>
                                         </tr>
-                                        <tr className="product-row">
-                                            <td>
-                                                <figure className="product-image-container">
-                                                    <a href="product.html" className="product-image">
-                                                        <img src="assets/images/products/product-6.jpg" alt="product" />
-                                                    </a>
-                                                    <a href="#" className="btn-remove icon-cancel" title="Remove Product" />
-                                                </figure>
-                                            </td>
-                                            <td className="product-col">
-                                                <h5 className="product-title">
-                                                    <a href="product.html">Men Black Gentle Belt</a>
-                                                </h5>
-                                            </td>
-                                            <td>$17.90</td>
-                                            <td>
-                                                <div className="product-single-qty">
-                                                    <input className="horizontal-quantity form-control" type="text" />
-                                                </div>{/* End .product-single-qty */}
-                                            </td>
-                                            <td className="text-right"><span className="subtotal-price">$17.90</span></td>
-                                        </tr>
+                                        
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -131,7 +112,7 @@ const CartPage = () => {
                                     <tbody>
                                         <tr>
                                             <td>Subtotal</td>
-                                            <td>$17.90</td>
+                                            <td>361.000 VNĐ</td>
                                         </tr>
                                         <tr>
                                             <td colSpan={2} className="text-left">
@@ -152,25 +133,25 @@ const CartPage = () => {
                                                     <div className="form-group form-group-sm">
                                                         <label>Shipping to <strong>NY.</strong></label>
                                                         <div className="select-custom">
-                                                            <select className="form-control form-control-sm">
+                                                            {/* <select className="form-control form-control-sm">
                                                                 <option value="USA">United States (US)</option>
                                                                 <option value="Turkey">Turkey</option>
                                                                 <option value="China">China</option>
                                                                 <option value="Germany">Germany</option>
-                                                            </select>
+                                                            </select> */}
                                                         </div>{/* End .select-custom */}
                                                     </div>{/* End .form-group */}
                                                     <div className="form-group form-group-sm">
                                                         <div className="select-custom">
                                                             <select className="form-control form-control-sm">
-                                                                <option value="NY">New York</option>
-                                                                <option value="CA">California</option>
-                                                                <option value="TX">Texas</option>
+                                                                <option value="NY">Đà Nẵng</option>
+                                                                <option value="CA">Hội An</option>
+                                                                <option value="TX">Tam Kỳ</option>
                                                             </select>
                                                         </div>{/* End .select-custom */}
                                                     </div>{/* End .form-group */}
                                                     <div className="form-group form-group-sm">
-                                                        <input type="text" className="form-control form-control-sm" placeholder="Town / City" />
+                                                        <input type="text" className="form-control form-control-sm" placeholder="Address" />
                                                     </div>{/* End .form-group */}
                                                     <div className="form-group form-group-sm">
                                                         <input type="text" className="form-control form-control-sm" placeholder="ZIP" />
@@ -185,7 +166,7 @@ const CartPage = () => {
                                     <tfoot>
                                         <tr>
                                             <td>Total</td>
-                                            <td>$17.90</td>
+                                            <td>361.000 VNĐ</td>
                                         </tr>
                                     </tfoot>
                                 </table>

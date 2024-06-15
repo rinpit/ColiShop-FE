@@ -33,6 +33,10 @@ const FooterComponent = () => {
                       <br /> Da Nang city
                     </a>
                   </div>
+                  <span className="footer-email">
+                    <strong>Email:</strong>
+                    <a href=""> colishop@gmail.com</a>
+                  </span>
                 </div>
               </div>
               <div className="social-icons mt-1 mb-3">
@@ -60,7 +64,10 @@ const FooterComponent = () => {
                 >
                   <i style={{ color: "black" }} className="fab fa-instagram" />
                 </a>
+
+                
               </div>
+
             </div>
             <div className="col-lg-6 col-xl-3">
               <div className="widget">
@@ -178,14 +185,15 @@ const FooterComponent = () => {
           </div>
         </div>
       </div>
+      
       <div className="footer-bottom">
         <div className="container-fluid d-sm-flex align-items-center">
-          <div className="footer-left">
+          {/* <div className="footer-left">
             <span className="footer-email">
               <strong>Email:</strong>
               <a href=""> colishop@gmail.com</a>
             </span>
-          </div>
+          </div> */}
           <div className="footer-right ml-auto mt-1 mt-sm-0">
             <img
               src="assets/images/demoes/demo23/payment-icon.png"

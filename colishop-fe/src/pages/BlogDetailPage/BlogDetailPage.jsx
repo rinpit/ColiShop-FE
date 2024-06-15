@@ -216,6 +216,7 @@ const BlogDetailPage = () => {
                                 </div>{/* End .owl-carousel */}
                             </div>{/* End .related-posts */}
                         </div>{/* End .col-lg-9 */}
+                        
                         <div className="sidebar-toggle custom-sidebar-toggle">
                             <i className="fas fa-sliders-h" />
                         </div>
