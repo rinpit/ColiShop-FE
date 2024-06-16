@@ -6,7 +6,7 @@ import { Fragment } from 'react'
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import { ToastContainer } from 'react-toastify'
-
+import { UserProvider } from './utils/UserContext'
 
 function App() {
 
@@ -27,6 +27,7 @@ function App() {
   return (
     <>
       <ToastContainer />
+      <UserProvider> {/* Bao bọc toàn bộ ứng dụng bằng UserProvider */}
       <Router>
         <Routes>
           {routes.map((route) => {
@@ -42,6 +43,7 @@ function App() {
           })}
         </Routes>
       </Router>
+      </UserProvider>
     </>
   )
 }
