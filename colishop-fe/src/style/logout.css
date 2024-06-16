@@ -1,0 +1,12 @@
+.header-user:hover .hover-hello::after {
+    content: "Logout";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    z-index: 999;
+  }
+  

@@ -1,100 +1,89 @@
+import React, { useState } from "react";
 import axios from "axios";
-import React, { useContext, useState } from "react";
-import { toast } from "react-toastify";
-import { useHistory, useNavigate } from "react-router-dom"
-import { UserContext } from "../../utils/UserContext";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignInComponent = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const navigation = useNavigate()
-  // Thinh add START
-  const { setUser } = useContext(UserContext);
-  // const history = useHistory();
-  // Thinh add END
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     console.log("info", email + password)
-  //     const response = await axios.post("http://localhost:3001/api/user/sign-in", { email, password });
-  //     if (response.status === 200) {
-  //       navigation("/")
-  //       toast.success("Login succesfully");
-  //       console.log(response.data)
-  //       localStorage.setItem("token", response.data.access_token)
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
-  //     } else {
-  //       alert("Loi dang nhap")
-  //     }
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-
-  // Thinh add START
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("info: ", email + password);
-      const response = await axios.post("http://localhost:3001/api/user/sign-in", { email, password });
-      console.log(response.data);
-      console.log("info again: ", email + password);
-      if (response.data.status === "OK") {
-        toast.success("Login successful!l");
-        setUser(response.data.user);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        console.log(response.data.user);
-        // history.push("/")
-        navigation("/");
+      const response = await axios.post(
+        "http://localhost:3001/api/user/sign-in",
+        formData
+      );
+
+      if (response && response.data) {
+        const { status, message, access_token } = response.data;
+
+        if (status === "OK") {
+          // Lưu access_token vào localStorage để duy trì đăng nhập
+          localStorage.setItem("access_token", access_token);
+          console.log(access_token);
+          setMessage(message);
+          setFormData({
+            email: "",
+            password: "",
+          });
+          navigate("/aboutus");
+          toast.success(message);
+        } else {
+          setMessage(message);
+          toast.error(message);
+        }
       } else {
-        console.log("fail login");
-        toast.error("Login failed. Please check your credentials.");
+        setMessage("Unexpected response format");
+        toast.error("Unexpected response format");
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
+      setMessage("Unexpected error occurred");
+      toast.error("Unexpected error occurred");
     }
-  }
-  // Thinh add END
+  };
+
   return (
     <div className="col-md-10">
+      <ToastContainer position="bottom-right" />
       <div className="sign-in-heading mb-1 text-center">
         <h2 className="title sign_in">Sign In</h2>
       </div>
-      <form
-        // action="#"
-        onSubmit={handleSubmit}
-      >
-
-        <label htmlFor="login-email">
-          Email address
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">
+          Username or email address
           <span className="required">*</span>
         </label>
         <input
           className="form-input form-wide"
-          type="email"
-          id="login-email"
+          id="email"
           required
-          value={email}
-          // onChange={(e) => setEmail(e.target.value)}
-          onChange={handleEmailChange}
+          value={formData.email}
+          onChange={handleChange}
         />
-
-        <label htmlFor="login-password">
+        <label htmlFor="password">
           Password
           <span className="required">*</span>
         </label>
         <input
           className="form-input form-wide"
-          type="password"
-          id="login-password"
+          id="password"
           required
-          value={password}
-          // onChange={(e) => setPassword(e.target.value)}
-          onChange={handlePasswordChange}
+          value={formData.password}
+          onChange={handleChange}
         />
 
         <div className="form-footer">
@@ -102,7 +91,7 @@ const SignInComponent = () => {
             <input
               type="checkbox"
               className="custom-control-input"
-              id="lost-password"
+              id="lostPassword"
             />
             <label
               className="custom-control-label mb-0"
@@ -118,11 +107,15 @@ const SignInComponent = () => {
             Forgot Password?
           </a>
         </div>
-
-        <button
-          className="btn btn-dark btn-md w-100"
-        // onClick={handleLogin}
-        >
+        {message && (
+          <p
+            className="text-center"
+            style={{ fontSize: "1.3rem", color: "red", paddingTop: "5px" }}
+          >
+            {message}
+          </p>
+        )}
+        <button type="submit" className="btn btn-dark btn-md w-100">
           Sign In
         </button>
       </form>
