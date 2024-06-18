@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../utils/UserContext";
 
 const HeaderComponent = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const {user, setUser} = useContext(UserContext);
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
@@ -19,7 +20,7 @@ const HeaderComponent = () => {
     setIsLoggedIn(false);
     navigate("/");
   };
-
+  
   return (
     <div className="page-wrapper">
       <header className="header">
@@ -58,7 +59,7 @@ const HeaderComponent = () => {
                       <i className="icon-user-2" />
                       <div className="header-userinfo">
                         <span className="d-inline-block font2 line-height-1">
-                          Hello!
+                          Hello!, {user.name}
                         </span>
                         <h4 className="mb-0">Logout</h4>
                       </div>
@@ -66,14 +67,14 @@ const HeaderComponent = () => {
                   </Link>
                 </div>
               ) : (
-                <Link to="/signup" className="header-icon d-lg-block d-none">
+                <Link to="/signin" className="header-icon d-lg-block d-none">
                   <div className="header-user">
                     <i className="icon-user-2" />
                     <div className="header-userinfo">
                       <span className="d-inline-block font2 line-height-1">
-                        Hello!
+                        {/* Hello! */}
                       </span>
-                      <h4 className="mb-0">Sign Up</h4>
+                      <h4 className="mb-0">Sign In</h4> 
                     </div>
                   </div>
                 </Link>

@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { routes } from './routes'
 import DefaultComponent from './components/DefaultComponent/DefaultComponent'
 import { Fragment } from 'react'
-import axios from 'axios'
-import { useQuery } from 'react-query'
+
+
 import { ToastContainer } from 'react-toastify'
 import { UserProvider } from './utils/UserContext'
+
 
 function App() {
 
@@ -16,18 +17,19 @@ function App() {
 
   // console.log("REACT_API_URL_BACKEND", process.env.REACT_APP_API_URL)
 
-  const fetchApi = async () => {
-    const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/getAll`)
-    return res.data
-  }
+  // const fetchApi = async () => {
+  //   const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/getAll`)
+  //   return res.data
+  // }
 
-  const query = useQuery({ queryKey: ['todos'], queryFn: fetchApi })
-  console.log("query", query.data)
+  // const query = useQuery({ queryKey: ['todos'], queryFn: fetchApi })
+  // console.log("query", query.data)
 
   return (
     <>
       <ToastContainer />
-      <UserProvider> {/* Bao bọc toàn bộ ứng dụng bằng UserProvider */}
+      <UserProvider> 
+        {/* Bao bọc toàn bộ ứng dụng bằng UserProvider */}
       <Router>
         <Routes>
           {routes.map((route) => {
