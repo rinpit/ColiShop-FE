@@ -35,12 +35,12 @@ const SignInComponent = () => {
           // Lưu access_token vào localStorage để duy trì đăng nhập
           localStorage.setItem("access_token", access_token);
           console.log(access_token);
-          setMessage(message);
+          // setMessage(message);
           setFormData({
             email: "",
             password: "",
           });
-          navigate("/aboutus");
+          navigate("/");
           toast.success(message);
         } else {
           setMessage(message);

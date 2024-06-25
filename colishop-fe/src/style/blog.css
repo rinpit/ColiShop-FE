@@ -1,0 +1,153 @@
+.post {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    animation: fadeIn 0.5s ease; /* Animation for fade-in effect */
+  }
+  
+  /* Hover effect for the entire post */
+  .post:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Keyframes for fadeIn animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Styling for the post media (likely the image) */
+  .post-media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+    /* Optional: To create a hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  }
+  
+  /* Hover effect for the post media */
+  .post-media:hover {
+    transform: translateY(-5px); /* Move the element up */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }
+  
+  /* Styling for images inside post media */
+  .post-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Styling for the date container */
+  .post-date {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #fff;
+    padding: 7px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Ensure it's above the image */
+  }
+  
+  /* Styling for day in the date */
+  .post-date .day {
+    font-size: 14px;
+    font-weight: bold;
+    color: #d8b8b8;
+  }
+  
+  /* Styling for month in the date */
+  .post-date .month {
+    font-size: 12px;
+    color: #bcafaf;
+  }
+  
+  /* Styling for the body/content of the post */
+  .post-body {
+    padding: 15px;
+  }
+  
+  /* Styling for the title of the post */
+  .post-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    /* Limit height and hide overflow */
+    max-height: 75px; /* Change this value as needed */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* Smooth transition */
+  }
+  
+  /* Show full title on hover */
+  .post:hover .post-title {
+    max-height: 1000px; /* Large enough to accommodate most titles */
+  }
+  
+  /* Styling for the content (paragraphs) of the post */
+  .post-content p {
+    margin-bottom: 0; /* Remove default bottom margin */
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+    max-height: 75px; /* Limit height */
+    overflow: hidden; /* Hide overflow */
+    position: relative; /* Create space for hover effect */
+    transition: max-height 0.3s ease-out; /* Smooth transition */
+  }
+  
+  /* Show full content on hover */
+  .post:hover .post-content p {
+    max-height: 1000px; /* Large enough to accommodate most content */
+  }
+  
+  /* Styling for the comments link */
+  .post-comment {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #999;
+    text-decoration: none;
+  }
+  
+  /* Hover effect for comments link */
+  .post-comment:hover {
+    text-decoration: underline;
+  }
+
+.main.blog-main {
+  background-color: #F4EFE6;
+}
+
+.sidebar {
+  padding: 20px;
+  background-color: #f4efe6; /* Màu kem nhẹ */
+  border-radius: 5px;
+  position: fixed; /* Đặt vị trí cố định */
+  top: 0; /* Giữ vị trí cố định từ đầu trang */
+  left: 0; /* Cố định bên trái */
+  width: 250px; /* Đảm bảo sidebar giữ nguyên chiều rộng */
+  height: 100vh; /* Chiều cao toàn bộ viewport */
+  z-index: 1000; /* Đặt z-index cao hơn để tránh bị chồng lên */
+}
+.breadcrumb {
+  padding-bottom: 5rem;
+}
+
+
+.post-info a {
+  display: inline-block;
+  max-width: 150px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Hiển thị dấu chấm chấm chấm khi vượt quá */
+}

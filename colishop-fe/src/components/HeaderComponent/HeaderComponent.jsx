@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const HeaderComponent = () => {
   const navigate = useNavigate();
@@ -112,17 +113,25 @@ const HeaderComponent = () => {
             <div className="header-center w-auto">
               <nav className="main-nav">
                 <ul className="menu">
-                  <li className="active">
-                    <a href="/">Home</a>
+                  <li>
+                    <NavLink exact to="/" activeClassName="active">
+                      Home
+                    </NavLink>
                   </li>
                   <li>
-                    <a href="/categories">Categories</a>
+                    <NavLink to="/categories" activeClassName="active">
+                      Categories
+                    </NavLink>
                   </li>
                   <li>
-                    <a href="/blog">Blog</a>
+                    <NavLink to="/blog" activeClassName="active">
+                      Blog
+                    </NavLink>
                   </li>
                   <li>
-                    <a href="/aboutus">About Us</a>
+                    <NavLink to="/aboutus" activeClassName="active">
+                      About Us
+                    </NavLink>
                   </li>
                 </ul>
               </nav>
