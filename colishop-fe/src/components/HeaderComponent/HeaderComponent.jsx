@@ -138,7 +138,7 @@ const HeaderComponent = () => {
             </div>
 
             <div className="header-right d-flex pr-0">
-              <div className="header-search header-search-popup header-search-category text-right">
+              {/* <div className="header-search header-search-popup header-search-category text-right">
                 <a href="#" className="search-toggle" role="button">
                   <i className="icon-magnifier mr-2" />
                   <span>Search</span>
@@ -160,7 +160,7 @@ const HeaderComponent = () => {
                     />
                   </div>
                 </form>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

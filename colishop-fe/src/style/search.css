@@ -1,0 +1,16 @@
+.header-search a.search-toggle {
+    color: #000; /* Màu chữ và biểu tượng mặc định là đen */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-search a.search-toggle i {
+    font-size: 18px;
+    color: #000; /* Màu của biểu tượng kính lúp */
+  }
+  
+  .header-search a.search-toggle span {
+    color: #000; /* Màu của dòng chữ "Search" */
+  }
+  

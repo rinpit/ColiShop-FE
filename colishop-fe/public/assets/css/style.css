@@ -2220,7 +2220,7 @@ aside .banner {
 }
 
 .breadcrumb-item {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: -0.01em;
   line-height: 24px;
   text-transform: uppercase;
@@ -4636,13 +4636,13 @@ label {
   max-width: 160px;
   padding-right: 2.5rem;
   padding-left: 0.8rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   padding-top: 1px;
 }
 .toolbox label {
   margin: 1px 1.1rem 0 0;
   color: #777;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 400;
   font-family: "Open Sans", sans-serif;
 }
@@ -4694,8 +4694,13 @@ label {
 
 .pagination-wrapper {
   display: flex;
-  justify-content: center; /* Căn giữa phân trang */
-  margin-top: 20px; /* Điều chỉnh khoảng cách phân trang với nội dung */
+  justify-content: center;  
+  margin-top: 20px;  
+  /* display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 1px;
+  left: 50%; */
 }
 
 .pagination {
@@ -8270,6 +8275,7 @@ a:focus {
 
   h2, .h2 {
     font-size: 3rem;
+    font-weight: 300;
   }
 
   .heading {
@@ -8291,6 +8297,7 @@ a:focus {
 
 .main {
   flex: 1 1 auto;
+  /* margin-bottom: 10px; */
 }
 
 .row {
@@ -9737,7 +9744,7 @@ header .separator {
   margin-right: 35px;
 }
 .main-nav .menu > li > a {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   padding: 19px 0;
 }
@@ -10803,7 +10810,7 @@ footer .contact-info-label {
 .sidebar-shop .widget-title a {
   display: block;
   position: relative;
-  color: inherit;
+  color: #583822;
 }
 .sidebar-shop .widget-title a:hover, .sidebar-shop .widget-title a:focus {
   text-decoration: none;
@@ -10890,6 +10897,7 @@ footer .contact-info-label {
 .cat-list li a {
   color: #777;
   font-weight: 500;
+  font-size: 14px;
 }
 .cat-list li a:hover, .cat-list li a:focus {
   color: #08C;
