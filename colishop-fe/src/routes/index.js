@@ -8,11 +8,12 @@ import ForgotPasswordPage from "../pages/ForgotPasswordPage/ForgotPasswordPage";
 import HomePage from "../pages/HomePage/HomePage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
-import ProductDetailPage from "../pages/ProductDetailPage/ProductDetailPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import WishListPage from "../pages/WishListPage/WishListPage";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import AdminPage from "../pages/AdminPage/AdminPage";
+import ProductDetailsPage from "../pages/ProductDetailsPage/ProductDetailsPage";
 export const routes = [
   {
     path: "/",
@@ -25,8 +26,8 @@ export const routes = [
     isShowHeader: true,
   },
   {
-    path: "/productdetail",
-    page: ProductDetailPage,
+    path: "/productdetails/:id",
+    page: ProductDetailsPage,
     isShowHeader: true,
   },
   {
@@ -80,12 +81,18 @@ export const routes = [
     isShowHeader: true,
   },
   {
-    path: "*",
-    page: NotFoundPage,
-  },
-  {
-    path: "/profile",
+    path: "/profile-user",
     page: ProfilePage,
     isShowHeader: true,
+  },
+  {
+    path: "/system/admin",
+    page: AdminPage,
+    isShowHeader: false,
+    isPrivate: true,
+  },
+  {
+    path: "*",
+    page: NotFoundPage,
   },
 ];

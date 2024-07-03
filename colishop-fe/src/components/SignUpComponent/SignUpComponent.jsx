@@ -1,140 +1,127 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import "../../style/signUpPage.css";
 import { useNavigate } from "react-router-dom";
-
+import * as UserService from "../../services/UserServices"
+import { useMutationHooks } from "../../hooks/useMutationHook";
+import * as message from '../../components/Message/Message'
+import Loading from "../LoadingComponent/Loading";
 const SignUpComponent = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
-  };
+  const mutation = useMutationHooks(
+    data => UserService.signupUser(data)
+  )
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/api/user/sign-up",
-        formData
-      );
-      if (response && response.data) {
-        if (response.data.status === "OK") {
-          setMessage(response.data.message);
-          setFormData({
-            name: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-          });
-          navigate("/signin");
-        } else {
-          setMessage(response.data.message);
-        }
-      } else {
-        setMessage("Unexpected response format");
-      }
-    } catch (error) {
-      setMessage("Unexpected error occurred");
+  const { data, isLoading, isSuccess, isError } = mutation
+
+  useEffect(() => {
+    if (isSuccess) {
+      message.success()
+      // toast.success("Login successful!");
+      navigate('/signin')
+    } else if (isError) {
+      message.error()
     }
-  };
+  }, [isSuccess, isError])
+
+  const handleOnChangeName = (e) => {
+    setName(e.target.value)
+  }
+
+  const handleOnChangeEmail = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const handleOnChangePassword = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const handleOnChangeConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value)
+  }
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    mutation.mutate({
+      name, email, password, confirmPassword
+    })
+    console.log("sign up", name, email, password, confirmPassword)
+  }
+
 
   return (
     <div className="col-md-10">
       <div className="sign-up-heading mb-1 text-center">
-        <h2 className="title sign_up">Sign Up</h2>
+        <h2 className="title sign_up">Đăng Ký</h2>
       </div>
-      <form className="signUpForm" onSubmit={handleSubmit}>
+      <form className="signUpForm">
         <label htmlFor="name">
-          Name
+          Họ & Tên
           <span className="required">*</span>
         </label>
         <input
-          type="text"
           className="form-input form-wide signup-input"
-          id="name"
+          type="text"
           required
-          value={formData.name}
-          onChange={handleChange}
+          value={name}
+          onChange={handleOnChangeName}
         />
         <label htmlFor="email">
-          Email address
+          Địa Chỉ Email
           <span className="required">*</span>
         </label>
         <input
-          type="email"
           className="form-input form-wide signup-input"
-          id="email"
+          type="email"
           required
-          value={formData.email}
-          onChange={handleChange}
+          value={email}
+          onChange={handleOnChangeEmail}
         />
         <label htmlFor="password">
-          Password
+          Mật Khẩu
           <span className="required">*</span>
         </label>
         <input
-          type="password"
           className="form-input form-wide signup-input"
-          id="password"
+          type="password"
           required
-          value={formData.password}
-          onChange={handleChange}
+          value={password}
+          onChange={handleOnChangePassword}
         />
+
         <label htmlFor="confirmPassword">
-          Confirm Password
+          Xác Nhận Mật Khẩu
           <span className="required">*</span>
         </label>
         <input
-          type="password"
           className="form-input form-wide signup-input"
-          id="confirmPassword"
+          type="password"
           required
-          value={formData.confirmPassword}
-          onChange={handleChange}
+          value={confirmPassword}
+          onChange={handleOnChangeConfirmPassword}
         />
-        {message && (
-          <p
-            className="text-center"
-            style={{ fontSize: "1.3rem", color: "red", paddingTop: "5px" }}
-          >
-            {message}
-          </p>
-        )}
+
         <div className="form-footer signup-footer">
-          <div className="custom-control custom-checkbox mb-0">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="signup-terms"
-              required
-            />
-            <label className="custom-control-label mb-0" htmlFor="signup-terms">
-              I agree to the terms and conditions
-            </label>
-          </div>
         </div>
-        <button
-          type="submit"
-          className="btn btn-dark btn-md w-100 signup-button"
-        >
-          Sign Up
-        </button>
+        {data?.status === 'ERR' && <span style={{ color: 'red' }}>{data?.message}</span>}
+        <Loading isLoading={isLoading}>
+          <button
+            className="btn btn-dark btn-md w-100 signup-button"
+            type="submit"
+            onClick={handleSignUp}
+          >
+            ĐĂNG KÝ
+          </button>
+        </Loading>
       </form>
 
       <p className="text-center" style={{ fontSize: "1.2rem" }}>
-        Already have an account? <a href="/signin">Sign In</a>
+        Đã có tài khoản?<a href="/signin">Đăng Nhập</a>
       </p>
     </div>
   );

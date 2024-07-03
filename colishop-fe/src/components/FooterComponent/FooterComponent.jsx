@@ -13,7 +13,7 @@ const FooterComponent = () => {
               <a href="#">
                 <img
                   className="logo mb-3"
-                  src="assets/images/demoes/demo23/logon.png"
+                  src="/assets/images/coli/coli-logo.png"
                   alt="Porto Logo"
                   width={140}
                   height={50}
@@ -65,7 +65,7 @@ const FooterComponent = () => {
                   <i style={{ color: "black" }} className="fab fa-instagram" />
                 </a>
 
-                
+
               </div>
 
             </div>
@@ -185,7 +185,7 @@ const FooterComponent = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="footer-bottom">
         <div className="container-fluid d-sm-flex align-items-center">
           {/* <div className="footer-left">
@@ -196,7 +196,7 @@ const FooterComponent = () => {
           </div> */}
           <div className="footer-right ml-auto mt-1 mt-sm-0">
             <img
-              src="assets/images/demoes/demo23/payment-icon.png"
+              src="/assets/images/coli/payment.png"
               alt="payment"
             />
           </div>

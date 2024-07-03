@@ -1,51 +1,90 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { routes } from './routes'
 import DefaultComponent from './components/DefaultComponent/DefaultComponent'
 import { Fragment } from 'react'
-
-
 import { ToastContainer } from 'react-toastify'
-import { UserProvider } from './utils/UserContext'
+import { isJsonString } from './utils'
+import { jwtDecode as jwt_decode } from "jwt-decode"
+import * as UserService from "./services/UserServices"
+import { useDispatch, useSelector } from 'react-redux'
+import { updateUser } from './redux/slices/userSlice'
+import Loading from './components/LoadingComponent/Loading'
 
 
 function App() {
+  const dispatch = useDispatch()
+  const [isLoading, setIsLoading] = useState(false)
+  const user = useSelector((state) => state.user)
 
-  // useEffect(() => {
-  //   fetchApi()
-  // }, {})
+  const handleDecode = () => {
+    let storageData = localStorage.getItem('access_token');
+    let decoded = {}
+    if (storageData && isJsonString(storageData)) {
+      storageData = JSON.parse(storageData)
+      decoded = jwt_decode(storageData)
+    }
+    return { decoded, storageData }
+  }
 
-  // console.log("REACT_API_URL_BACKEND", process.env.REACT_APP_API_URL)
+  useEffect(() => {
+    setIsLoading(true)
+    const { decoded, storageData } = handleDecode()
+    if (decoded?.id) {
+      handleGetDetailsUser(decoded?.id, storageData)
+    }
+    setIsLoading(false)
+  }, [])
 
-  // const fetchApi = async () => {
-  //   const res = await axios.get(`${process.env.REACT_APP_API_URL}/product/getAll`)
-  //   return res.data
-  // }
+  // Add a request interceptor
+  UserService.axiosJWT.interceptors.request.use(async (config) => {
+    const currentTime = new Date()
+    const { decoded } = handleDecode()
+    if (decoded?.exp < currentTime.getTime() / 1000) {
+      const data = await UserService.refreshToken()
+      config.headers['token'] = `Bearer ${data?.access_token}`
+    }
+    return config;
+  }, function (error) {
+    return Promise.reject(error);
+  });
 
-  // const query = useQuery({ queryKey: ['todos'], queryFn: fetchApi })
-  // console.log("query", query.data)
+  const handleGetDetailsUser = async (id, token) => {
+    // Đây là chỗ phát sinh ra lỗi, fix gần 3 tiếng
+    // khi không có token thì không thực hiện hàm handleGetDetailsUser()
+    if (!token) {
+      console.log('No valid token available');
+      return;
+    }
+    try {
+      const res = await UserService.getDetailsUser(id, token)
+      dispatch(updateUser({ ...res?.data, access_token: token }))
+    } catch (error) {
+      console.error('Failed to fetch user details:', error);
+    }
+    // console.log("res", res)
+  }
 
   return (
     <>
-      <ToastContainer />
-      <UserProvider> 
-        {/* Bao bọc toàn bộ ứng dụng bằng UserProvider */}
-      <Router>
-        <Routes>
-          {routes.map((route) => {
-            const Page = route.page
-            const Layout = route.isShowHeader ? DefaultComponent : Fragment
-            return (
-              <Route key={route.path} path={route.path} element={
-                <Layout>
-                  <Page />
-                </Layout>
-              } />
-            )
-          })}
-        </Routes>
-      </Router>
-      </UserProvider>
+      <Loading isLoading={isLoading}>
+        <Router>
+          <Routes>
+            {routes.map((route) => {
+              const Page = route.page
+              const ischeckAuth = !route.isPrivate || user.isAdmin
+              const Layout = route.isShowHeader ? DefaultComponent : Fragment
+              return (
+                <Route key={route.path} path={ischeckAuth ? route.path : undefined} element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                } />
+              )
+            })}
+          </Routes>
+        </Router>
+      </Loading>
     </>
   )
 }
