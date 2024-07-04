@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import ProductComponent from '../../components/ProductComponent/ProductComponent';
 import { WrapperButtonMore } from '../HomePage/style';
 import * as ProductService from "../../services/ProductServices"
+import TypeProduct from '../../components/TypeProduct/TypeProduct';
 
 const CategoriesPage = () => {
     // lấy state của product ra, nghĩa là lấy những data đã nhập ở thanh search đã được lưu ở redux qua bên homepage
@@ -31,7 +32,7 @@ const CategoriesPage = () => {
         return res;
     }
     // khởi tạo để lấy type product
-    const [typeProduct, setTypeProduct] = useState([])
+    const [typeProducts, setTypeProducts] = useState([])
     // những query này sẽ tương ứng với context ở trên với mảng [0], [1], [2]
     const { isLoading, data: products, isPreviousData } = useQuery(['products', limit, searchDebounce], fetchProductAll, { retry: 3, retryDelay: 1000, keepPreviousData: true })
     // keepPreviousData giúp giữ lại những data cũ khi load thêm sản phẩm mà kh cần reload lại trang
@@ -40,13 +41,15 @@ const CategoriesPage = () => {
     // lấy type products
     const fetchAllTypeProduct = async () => {
         const res = await ProductService.getAllTypeProduct()
-        setTypeProduct(res?.data)
+        setTypeProducts(res?.data)
     }
     // lấy type products
     useEffect(() => {
         fetchAllTypeProduct()
     }, [])
 
+    // ví dụ
+    const arr = ['Áo1', 'Áo2', 'Áo3']
     return (
         <div className='page-wrapper'>
             <main className='main'>
@@ -195,51 +198,22 @@ const CategoriesPage = () => {
 
 
                                 <div className="widget" style={{ border: '1px solid #e7e7e7' }}>
-                                    <h3 className="widget-title">
-                                        <a data-toggle="collapse" href="#widget-body-1" role="button" aria-expanded="true" aria-controls="widget-body-1">Categories</a>
-                                    </h3>
-                                    <div className="collapse show" id="widget-body-1">
-                                        <div className="widget-body">
-                                            <ul className="cat-list">
-                                                <li>
-                                                    <a href="#widget-category-1" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="widget-category-1">
-                                                        All<span className="products-count">(12)</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#widget-category-2" className="collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="widget-category-2">
-                                                        Váy<span className="products-count"></span>
-                                                        <span className="toggle" />
-                                                    </a>
-                                                    {/* <div className="collapse" id="widget-category-2">
-                                                        <ul className="cat-sublist">
-                                                            <li>Cocktail Dress<span className="products-count">(3)</span></li>
-                                                            <li>Casual Dress<span className="products-count">(2)</span></li>
-                                                        </ul>
-                                                    </div> */}
-                                                </li>
-                                                <li>
-                                                    <a href="#">Áo<span className="products-count"></span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Quần<span className="products-count"></span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Túi<span className="products-count"></span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Mũ<span className="products-count"></span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Áo mùa hè<span className="products-count"></span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Phụ kiện khác<span className="products-count"></span></a>
-                                                </li>
-                                            </ul>
+                                    <div>
+                                        <h3 className="widget-title">
+                                            <a data-toggle="collapse" href="#widget-body-1" role="button" aria-expanded="true" aria-controls="widget-body-1">Phân Loại Sản Phẩm</a>
+                                        </h3>
+                                        <div className="collapse show" id="widget-body-1">
+                                            {typeProducts.map((item) => {
+                                                return (
+                                                    <TypeProduct name={item} key={item} />
+                                                )
+                                            })}
                                         </div>
                                     </div>
                                 </div>
+
+
+
                                 <div className="widget" style={{ borderBottom: '1px solid #e7e7e7' }}>
                                     <h3 className="widget-title">
                                         <a data-toggle="collapse" href="#widget-body-4" role="button" aria-expanded="true" aria-controls="widget-body-4">Sizes</a>
