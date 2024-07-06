@@ -8,3 +8,9 @@ export const WrapperContenPopup = styled.p`
         color: blue
     }
 `
+
+
+export const WrapperIconHeader = styled.span`
+    font-size: 30px;
+    color: #fff;
+`

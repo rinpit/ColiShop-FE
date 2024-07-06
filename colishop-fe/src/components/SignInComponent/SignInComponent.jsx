@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import * as UserService from "../../services/UserServices"
 import { useMutationHooks } from "../../hooks/useMutationHook";
@@ -12,6 +12,7 @@ import Loading from "../LoadingComponent/Loading";
 
 const SignInComponent = () => {
   const navigate = useNavigate();
+  const location = useLocation()
   const dispathch = useDispatch();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -23,13 +24,20 @@ const SignInComponent = () => {
   const { data, isLoading, isSuccess } = mutation
 
   useEffect(() => {
+    console.log("location", location)
     if (isSuccess) {
       message.success()
-      navigate('/categories')
+      // check điều kiện, nếu có location thì chuyển sang location state, còn không chuyển sang trang home/categories
+      if (location?.state) {
+        navigate(location?.state)
+      }else {
+        navigate('/')
+      }
+
       localStorage.setItem('access_token', JSON.stringify(data?.access_token))
       if (data?.access_token) {
         const decode = jwt_decode(data?.access_token)
-        console.log("decode", decode)
+        // console.log("decode", decode)
         if (decode?.id) {
           handleGetDetailsUser(decode?.id, data?.access_token)
         }
@@ -58,7 +66,7 @@ const SignInComponent = () => {
       email,
       password
     })
-    console.log('sign in', email, password)
+    // console.log('sign in', email, password)
   }
 
 

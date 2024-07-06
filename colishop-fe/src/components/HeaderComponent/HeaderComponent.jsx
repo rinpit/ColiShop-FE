@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Popover } from "antd";
+import { Badge, Popover } from "antd";
 import { WrapperContenPopup } from "./style";
 import * as UserService from "../../services/UserServices"
 import { resetUser } from "../../redux/slices/userSlice";
@@ -22,6 +22,10 @@ const HeaderComponent = () => {
   const [search, setSearch] = useState('')
 
 
+  // lấy order từ redux 
+  const order = useSelector((state) => state.order)
+  console.log("order", order)
+  // lấy user tử redux 
   const user = useSelector((state) => state.user)
   // console.log("user", user)
   // kiểm tra có phải là admin hay không? 
@@ -128,14 +132,22 @@ const HeaderComponent = () => {
 
               <div className="dropdown cart-dropdown">
                 <a
-                  href="/cart"
-                  title="Cart"
+                  onClick={() => {
+                    navigate('/cart')
+                  }}
                   className="dropdown-toggle cart-toggle"
                 >
-                  <i className="minicart-icon" />
-                  <span className="cart-count badge-circle">3</span>
+                  <Badge count={order?.orderItems?.length} size="small">
+                    <i className="minicart-icon" />
+                  </Badge>
+
+                  {/* <span
+                  className="cart-count badge-circle"
+                  >{order?.orderItems?.length}</span> */}
+
                 </a>
               </div>
+
             </div>
           </div>
         </div>
@@ -153,16 +165,19 @@ const HeaderComponent = () => {
                 <ul className="menu">
                   <li>
                     {/* className="active" */}
-                    <a href="/">Home</a>
+                    <a onClick={() => { 
+                      navigate('/') 
+                      // window.location.href = 'http://localhost:3000/';
+                      }}>Home</a>
                   </li>
                   <li>
-                    <a href="/categories">Categories</a>
+                    <a onClick={() => { navigate('/categories') }}>Categories</a>
                   </li>
                   <li>
-                    <a href="/blog">Blog</a>
+                    <a onClick={() => { navigate('/blog') }}>Blog</a>
                   </li>
                   <li>
-                    <a href="/aboutus">About Us</a>
+                    <a onClick={() => { navigate('/aboutus') }} >About Us</a>
                   </li>
                 </ul>
               </nav>

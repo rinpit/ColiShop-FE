@@ -93,9 +93,9 @@ const TypeProductPage = () => {
                   {/* productType lấy những sản phẩm khi render ra từng loại */}
                   {productType?.map((product) => {
                     return (
-                      <div className="col-6 col-sm-4 col-lg-3">
+                      <div div key={product._id} className="col-6 col-sm-4 col-lg-3">
                         <ProductComponent
-                          key={product._id}
+                          // key={product._id}
                           msp={product.msp}
                           name={product.name}
                           image={product.image}

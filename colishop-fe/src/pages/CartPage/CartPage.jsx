@@ -48,7 +48,7 @@ const CartPage = () => {
                                             <td>
                                                 <div className="product-single-qty">
                                                     <input className="horizontal-quantity form-control" type="text" />
-                                                </div>{/* End .product-single-qty */}
+                                                </div>
                                             </td>
                                             <td className="text-right"><span className="subtotal-price">259.000 VNĐ</span></td>
                                         </tr>
@@ -75,8 +75,6 @@ const CartPage = () => {
                                             </td>
                                             <td className="text-right"><span className="subtotal-price">102.000 VNĐ</span></td>
                                         </tr>
-                                        
-                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -87,24 +85,22 @@ const CartPage = () => {
                                                             <div className="input-group">
                                                                 <input type="text" className="form-control form-control-sm" placeholder="Coupon Code" required />
                                                                 <div className="input-group-append">
-                                                                    <button className="btn btn-sm" type="submit">Apply
-                                                                        Coupon</button>
+                                                                    <button className="btn btn-sm" type="submit">Apply Coupon</button>
                                                                 </div>
-                                                            </div>{/* End .input-group */}
+                                                            </div>
                                                         </form>
                                                     </div>
-                                                </div>{/* End .float-left */}
+                                                </div>
                                                 <div className="float-right">
-                                                    <button type="submit" className="btn btn-shop btn-update-cart">
-                                                        Update Cart
-                                                    </button>
-                                                </div>{/* End .float-right */}
+                                                    <button type="submit" className="btn btn-shop btn-update-cart">Update Cart</button>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>{/* End .cart-table-container */}
                         </div>{/* End .col-lg-8 */}
+
                         <div className="col-lg-4">
                             <div className="cart-summary">
                                 <h3>CART TOTALS</h3>
@@ -121,14 +117,14 @@ const CartPage = () => {
                                                     <div className="custom-control custom-radio">
                                                         <input type="radio" className="custom-control-input" name="radio" defaultChecked />
                                                         <label className="custom-control-label">Local pickup</label>
-                                                    </div>{/* End .custom-checkbox */}
-                                                </div>{/* End .form-group */}
+                                                    </div>
+                                                </div>
                                                 <div className="form-group form-group-custom-control mb-0">
                                                     <div className="custom-control custom-radio mb-0">
                                                         <input type="radio" name="radio" className="custom-control-input" />
                                                         <label className="custom-control-label">Flat rate</label>
-                                                    </div>{/* End .custom-checkbox */}
-                                                </div>{/* End .form-group */}
+                                                    </div>
+                                                </div>
                                                 <form action="#">
                                                     <div className="form-group form-group-sm">
                                                         <label>Shipping to <strong>NY.</strong></label>
@@ -139,8 +135,8 @@ const CartPage = () => {
                                                                 <option value="China">China</option>
                                                                 <option value="Germany">Germany</option>
                                                             </select> */}
-                                                        </div>{/* End .select-custom */}
-                                                    </div>{/* End .form-group */}
+                                                        </div>
+                                                    </div>
                                                     <div className="form-group form-group-sm">
                                                         <div className="select-custom">
                                                             <select className="form-control form-control-sm">
@@ -148,14 +144,14 @@ const CartPage = () => {
                                                                 <option value="CA">Hội An</option>
                                                                 <option value="TX">Tam Kỳ</option>
                                                             </select>
-                                                        </div>{/* End .select-custom */}
-                                                    </div>{/* End .form-group */}
+                                                        </div>
+                                                    </div>
                                                     <div className="form-group form-group-sm">
                                                         <input type="text" className="form-control form-control-sm" placeholder="Address" />
-                                                    </div>{/* End .form-group */}
+                                                    </div>
                                                     <div className="form-group form-group-sm">
                                                         <input type="text" className="form-control form-control-sm" placeholder="ZIP" />
-                                                    </div>{/* End .form-group */}
+                                                    </div>
                                                     <button type="submit" className="btn btn-shop btn-update-total">
                                                         Update Totals
                                                     </button>
@@ -174,10 +170,9 @@ const CartPage = () => {
                                     <a href="/checkout" className="btn btn-block btn-dark">Proceed to Checkout
                                         <i className="fa fa-arrow-right" /></a>
                                 </div>
-                            </div>{/* End .cart-summary */}
-                        </div>{/* End .col-lg-4 */}
-                    </div>{/* End .row */}
-
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

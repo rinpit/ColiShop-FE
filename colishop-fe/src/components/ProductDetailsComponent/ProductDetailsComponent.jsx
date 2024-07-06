@@ -2,10 +2,27 @@ import React, { useEffect, useState } from 'react'
 import * as ProductService from "../../services/ProductServices"
 import { useQuery } from 'react-query'
 import Loading from '../LoadingComponent/Loading'
-import { Rate } from 'antd'
+import { InputNumber, Rate } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { background, border } from '@chakra-ui/react'
+import { borderRadius, fontSize, fontWeight, width } from '@mui/system'
+import { color } from 'framer-motion'
+import { addOrderProduct } from '../../redux/slices/orderSlice'
+import { WrapperInputNumber, WrapperQualityProduct } from './style'
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
+import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
+import ColumnGroup from 'antd/es/table/ColumnGroup'
+
 
 const ProductDetailsComponent = ({ idProduct }) => {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    //  số lượng đơn hàng
     const [numProduct, setNumProduct] = useState(1)
+    // lấy data user từ redux
+    const user = useSelector((state) => state.user)
     const onChange = (value) => {
         setNumProduct(Number(value))
     }
@@ -13,38 +30,48 @@ const ProductDetailsComponent = ({ idProduct }) => {
     // func lấy dữ liệu chi tiết từ product
     const fetchGetDetailsProduct = async (context) => {
         const id = context?.queryKey && context?.queryKey[1]
+
         if (id) {
             const res = await ProductService.getDetailsProduct(id)
             return res?.data
         }
     }
+
+    // func lấy số lượng
+    const handleChangeCount = (type) => {
+        console.log("type", type)
+        if (type === 'increase') {
+            setNumProduct(numProduct + 1)
+        } else {
+            setNumProduct(numProduct - 1)
+        }
+        console.log("numProduct", numProduct)
+    }
+
+
+    // console.log("location", location)
+    // console.log("user", user)
+
     const { isLoading, data: productDetails } = useQuery({ queryKey: ['product-details', idProduct], queryFn: fetchGetDetailsProduct }, { enabled: !!idProduct })
-    console.log("productDetails", productDetails)
+    const handleAddOrderProduct = () => {
+        if (!user?.id) {
+            navigate('/signin', { state: location?.pathname })
+        } else {
+            // dispatch một orderProduct và truyền đi data
+            dispatch(addOrderProduct({
+                // truyền một object orderItem
+                orderItem: {
+                    name: productDetails?.name,
+                    amount: numProduct,
+                    image: productDetails?.image,
+                    price: productDetails?.price,
+                    product: productDetails?._id
+                }
+            }))
+        }
+    }
+    console.log("productDetails", productDetails, user)
 
-    //====================================
-    // const [productDetails, setProductDetails] = useState('')
-    // const [isLoading, setIsLoading] = useState(false)
-
-
-    // useEffect(() => {
-    //     const fetchGetDetailsProduct = async () => {
-    //         if (idProduct) {
-    //             setIsLoading(true);
-    //             try {
-    //                 const res = await ProductService.getDetailsProduct(idProduct);
-    //                 setProductDetails(res?.data);
-    //             } catch (error) {
-    //                 console.error("Error fetching product details:", error);
-    //             } finally {
-    //                 setIsLoading(false);
-    //             }
-    //         }
-    //     };
-
-    //     fetchGetDetailsProduct();
-    // }, [idProduct]);
-
-    // console.log("productDetails", productDetails);
 
     return (
         <Loading isLoading={isLoading}>
@@ -72,8 +99,10 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                         </div>
                                         <div className="product-single-carousel owl-carousel owl-theme show-nav-hover">
                                             <div className="product-item">
-                                                <img className="product-single-image" src={productDetails?.image}
-                                                    width={468} height={468} alt="product"
+                                                <img
+                                                    // className="product-single-image" 
+                                                    src={productDetails?.image}
+                                                // width={468} height={468} alt="product"
                                                 />
                                             </div>
                                         </div>
@@ -83,7 +112,7 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                     <h1 className="product-title">{productDetails?.name}</h1>
                                     <div className="ratings-container">
                                         <div className="product-ratings">
-                                            <span className="ratings" style={{ width: `${productDetails?.rating}` }} />
+                                            <span className="ratings" style={{ width: `${productDetails?.rating}` }} value={productDetails?.rating} />
                                             <span className="tooltiptext tooltip-top" />
                                             {/* <Rate allowHalf defaultValue={productDetails?.rating} value={productDetails?.rating} /> */}
                                         </div>
@@ -102,9 +131,46 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                     </ul>
                                     <div className="product-action">
                                         <div className="product-single-qty">
-                                            <input className="horizontal-quantity form-control" type="text" onChange={onChange} value={numProduct} />
                                         </div>
-                                        <div className="btn btn-dark add-cart mr-2" title="Add to Cart">Thêm vào giỏ hàng</div>
+
+                                        <h5>Quality: </h5>
+                                        <WrapperQualityProduct>
+                                            <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => handleChangeCount('decrease')} >
+                                                <MinusOutlined style={{ color: '#000', fontSize: '20px' }} />
+                                            </button>
+                                            <WrapperInputNumber onChange={onChange} size='large' value={numProduct} />
+                                            <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => handleChangeCount('increase')} >
+                                                <PlusOutlined style={{ color: '#000', fontSize: '20px' }} />
+                                            </button>
+                                        </WrapperQualityProduct>
+
+                                        <ButtonComponent
+                                            size={40}
+                                            styleButton={{
+                                                background: 'rgb(255, 57, 69)',
+                                                height: '48px',
+                                                width: '220px',
+                                                border: 'none',
+                                                borderRadius: '4px'
+                                            }}
+                                            textButton={'Thêm vào giỏ hàng'}
+                                            onClick={handleAddOrderProduct}
+                                            styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
+                                        ></ButtonComponent>
+                                        <ButtonComponent
+                                            size={40}
+                                            styleButton={{
+                                                background: '#fff',
+                                                height: '48px',
+                                                width: '220px',
+                                                border: '1px solid rgb(13, 92, 182)',
+                                                borderRadius: '4px',
+                                                marginLeft: '20px'
+                                            }}
+                                            textButton={'Mua trả sau'}
+                                            onClick={handleAddOrderProduct}
+                                            styleTextButton={{ color: 'rgb(13, 92, 182)', fontSize: '15px', fontWeight: '700' }}
+                                        ></ButtonComponent>
                                     </div>
                                     <hr className="divider mb-0 mt-0" />
                                     <div className="product-single-share mb-3">
@@ -116,8 +182,16 @@ const ProductDetailsComponent = ({ idProduct }) => {
                                             <a href="#" className="social-icon social-gplus fab fa-google-plus-g" target="_blank" title="Google +" />
                                             <a href="#" className="social-icon social-mail icon-mail-alt" target="_blank" title="Mail" />
                                         </div>
+                                        <a href="wishlist.html" className="btn-icon-wish add-wishlist" title="Add to Wishlist">
+                                            <i className="icon-wishlist-2" />
+                                            <span>Add to Wishlist</span>
+                                        </a>
                                         {/* <a href="/" className="btn-icon-wish add-wishlist" title="Add to Wishlist"><i className="icon-wishlist-2" /><span>Add to Wishlist</span></a> */}
                                     </div>
+                                    <div className="product-single-share mb-3">
+                                        <h5>Giao hàng đến: <span>{user?.address}</span></h5>
+                                    </div>
+                                    <span> Đổi địa chỉ</span>
                                 </div>
                             </div>
                             {/* </Loading> */}

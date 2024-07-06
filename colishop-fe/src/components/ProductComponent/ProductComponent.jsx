@@ -2,6 +2,7 @@ import { Rate } from 'antd'
 import { color } from 'framer-motion'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Loading from '../LoadingComponent/Loading'
 
 const ProductComponent = (props) => {
     //khỏi tạo navigate để referen đến page khác
@@ -18,7 +19,7 @@ const ProductComponent = (props) => {
         discount,
         countInStock,
         size,
-        brand, id } = props
+        brand, id , loading} = props
 
     // hàm handleDetailsProduct
     const handleDetailsProduct = (id) => {
