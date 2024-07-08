@@ -41,3 +41,16 @@ export const renderOptions = (arr) => {
     })
     return results;
 }
+
+
+// chuyển đổi chỗ giá tiền dấu , thành dấu . 
+// hiện tại thì kh bị lỗi nên kh cần dùng
+export const convertPrice = (price) => {
+    try {
+        // const result = price?.toLocaleString().replaceAll(',', '.')
+        const result = price?.toLocaleString()
+        return `${result} VNĐ` 
+    } catch (error) {
+        return null
+    }
+}

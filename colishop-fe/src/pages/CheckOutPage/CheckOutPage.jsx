@@ -295,17 +295,15 @@ const CheckOutPage = () => {
                                                         <input type="radio" className="custom-control-input" name="radio" defaultChecked />
                                                         <label className="custom-control-label">Local Pickup</label>
                                                     </div>
-                                                    {/* End .custom-checkbox */}
                                                 </div>
-                                                {/* End .form-group */}
+                                               
                                                 <div className="form-group form-group-custom-control mb-0">
                                                     <div className="custom-control custom-radio d-flex mb-0">
                                                         <input type="radio" name="radio" className="custom-control-input" />
                                                         <label className="custom-control-label">Flat Rate</label>
                                                     </div>
-                                                    {/* End .custom-checkbox */}
                                                 </div>
-                                                {/* End .form-group */}
+                                               
                                             </td>
                                         </tr>
                                         <tr className="order-total">

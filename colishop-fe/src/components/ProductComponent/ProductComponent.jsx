@@ -64,7 +64,7 @@ const ProductComponent = (props) => {
 
                 <div className="price-box">
                     {/* toLocaleString() format giá */}
-                    <span className="product-price">{price.toLocaleString()} VNĐ</span>
+                    <span className="product-price">{price?.toLocaleString()} VNĐ</span>
                 </div>
             </div>
         </div>

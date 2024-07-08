@@ -5,13 +5,13 @@ import { useMutationHooks } from '../../hooks/useMutationHook';
 import * as message from '../../components/Message/Message'
 import { useDispatch } from 'react-redux'
 import { updateUser } from '../../redux/slices/userSlice';
-import { Button, Upload } from 'antd';
+import { Button, Form, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons'
 import { getBase64 } from '../../utils';
 import { WrapperUploadFile } from './style';
 import Loading from '../../components/LoadingComponent/Loading';
 const ProfilePage = () => {
-  const dispathch = useDispatch()
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
 
   const [name, setName] = useState('');
@@ -48,9 +48,17 @@ const ProfilePage = () => {
 
   const handleGetDetailsUser = async (id, token) => {
     const res = await UserService.getDetailsUser(id, token)
-    dispathch(updateUser({ ...res?.data, access_token: token }))
+    dispatch(updateUser({ ...res?.data, access_token: token }))
   }
 
+
+
+  // // sử dụng form 
+  // const [form] = Form.useForm();
+  // // cách khắc phục lỗi khi set state mà không hiển thị dữ liệu ở form
+  // useEffect(() => {
+  //   form.setFieldsValue({name, email, address, phone, avatar})
+  // }, [form, { name, email, address, phone, avatar }])
 
 
   const handleOnChangeName = (e) => {
@@ -82,8 +90,9 @@ const ProfilePage = () => {
       phone,
       avatar
     })
-    console.log("update", name, email, address, phone, avatar)
 
+
+    console.log("update", name, email, address, phone, avatar)
   }
 
   return (
@@ -102,6 +111,7 @@ const ProfilePage = () => {
 
                 <ul className="checkout-steps">
                   <li>
+                    
                     <form id="checkout-form">
                       <div className="row">
                         <div className="col-md-9">
@@ -183,10 +193,6 @@ const ProfilePage = () => {
                         <button style={{ marginTop: '26px' }} className="btn btn-success btn-md" onClick={handleUpdate}>Cập Nhật</button>
                       </div> */}
                       </div>
-
-
-
-
                     </form>
                   </li>
                 </ul>

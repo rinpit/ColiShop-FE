@@ -31,7 +31,7 @@ const SignInComponent = () => {
       if (location?.state) {
         navigate(location?.state)
       }else {
-        navigate('/')
+        navigate('/categories')
       }
 
       localStorage.setItem('access_token', JSON.stringify(data?.access_token))

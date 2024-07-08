@@ -87,7 +87,8 @@ const HeaderComponent = () => {
                 width={150}
                 height={50}
                 onClick={() => {
-                  navigate('/')
+                  // navigate('/')
+                  window.location.href = 'http://localhost:3000/';
                 }}
                 style={{ cursor: 'pointer' }}
               />
