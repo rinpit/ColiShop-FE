@@ -166,8 +166,8 @@ const HeaderComponent = () => {
                   <li>
                     {/* className="active" */}
                     <a onClick={() => { 
-                      navigate('/') 
-                      // window.location.href = 'http://localhost:3000/';
+                      // navigate('/') 
+                      window.location.href = 'http://localhost:3000/';
                       }}>Home</a>
                   </li>
                   <li>

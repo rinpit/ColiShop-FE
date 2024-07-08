@@ -1,6 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+// import { WrapperInputNumber, WrapperQualityProduct } from '../../components/ProductDetailsComponent/style'
+import { WrapperInputNumber, WrapperQualityProduct } from './style'
 
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { decreaseAmount, increaseAmount, removeOrderProduct } from '../../redux/slices/orderSlice'
 const CartPage = () => {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    //  số lượng đơn hàng
+    const [numProduct, setNumProduct] = useState(1)
+    // lấy data user từ redux
+    // const user = useSelector((state) => state.user)
+    const onChange = (value) => {
+        setNumProduct(Number(value))
+    }
+
+    // func lấy dữ liệu chi tiết từ product
+    // const fetchGetDetailsProduct = async (context) => {
+    //     const id = context?.queryKey && context?.queryKey[1]
+
+    //     if (id) {
+    //         const res = await ProductService.getDetailsProduct(id)
+    //         return res?.data
+    //     }
+    // }
+
+    // func xử lý số lượng product hiện có trong giỏ hàng
+    const handleChangeCount = (type, idProduct) => {
+        if (type === 'increase') {
+            dispatch(increaseAmount({ idProduct }))
+        } else {
+            dispatch(decreaseAmount({ idProduct }))
+        }
+    }
+
+    // func xử lý xoá product hiện có trong giỏ hàng
+    const handleDeleteOrder = (idProduct) => {
+        dispatch(removeOrderProduct({ idProduct }))
+    }
+
+    // lấy data order
+    const order = useSelector((state) => state.order)
+
+    console.log("order", order)
     return (
         <div className='page-wrapper'>
             <main className='main'>
@@ -23,59 +68,61 @@ const CartPage = () => {
                                     <thead>
                                         <tr>
                                             <th className="thumbnail-col" />
-                                            <th className="product-col">Product</th>
-                                            <th className="price-col">Price</th>
-                                            <th className="qty-col">Quantity</th>
-                                            <th className="text-right">Subtotal</th>
+                                            <th className="product-col">Sản Phẩm</th>
+                                            <th className="price-col">Đơn Giá</th>
+                                            <th className="qty-col">Số lượng</th>
+                                            <th className="text-right">Thành Tiền</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr className="product-row">
-                                            <td>
-                                                <figure className="product-image-container">
-                                                    <a href="product.html" className="product-image">
-                                                        <img src="assets/images/products/product-01.jpg" alt="product" />
-                                                    </a>
-                                                    <a href="#" className="btn-remove icon-cancel" title="Remove Product" />
-                                                </figure>
-                                            </td>
-                                            <td className="product-col">
-                                                <h5 className="product-title">
-                                                    <a href="product.html">Turtleneck Sweater H&M</a>
-                                                </h5>
-                                            </td>
-                                            <td>259.000 VNĐ</td>
-                                            <td>
-                                                <div className="product-single-qty">
-                                                    <input className="horizontal-quantity form-control" type="text" />
-                                                </div>
-                                            </td>
-                                            <td className="text-right"><span className="subtotal-price">259.000 VNĐ</span></td>
-                                        </tr>
 
-                                        <tr className="product-row">
-                                            <td>
-                                                <figure className="product-image-container">
-                                                    <a href="product.html" className="product-image">
-                                                        <img src="assets/images/products/product-0.jpg" alt="product" />
-                                                    </a>
-                                                    <a href="#" className="btn-remove icon-cancel" title="Remove Product" />
-                                                </figure>
-                                            </td>
-                                            <td className="product-col">
-                                                <h5 className="product-title">
-                                                    <a href="product.html">Jasambac</a>
-                                                </h5>
-                                            </td>
-                                            <td>102.000 VNĐ</td>
-                                            <td>
-                                                <div className="product-single-qty">
-                                                    <input className="horizontal-quantity form-control" type="text" />
-                                                </div>{/* End .product-single-qty */}
-                                            </td>
-                                            <td className="text-right"><span className="subtotal-price">102.000 VNĐ</span></td>
-                                        </tr>
-                                    </tbody>
+                                    {order?.orderItems?.map((order) => {
+                                        return (
+                                            <tbody>
+                                                <tr className="product-row">
+
+                                                    <td>
+                                                        <figure className="product-image-container">
+                                                            <a
+                                                                // href="product.html" 
+                                                                className="product-image">
+                                                                <img src={order?.image} alt="product" />
+                                                            </a>
+                                                            {/* xoá sản phẩm */}
+
+                                                            <a className="btn-remove icon-cancel" title="Remove Product" onClick={() => handleDeleteOrder(order?.product)} />
+                                                        </figure>
+                                                    </td>
+
+                                                    <td className="product-col">
+                                                        <h5 className="product-title">
+                                                            <a href="product.html">{order?.name}</a>
+                                                        </h5>
+                                                    </td>
+
+                                                    <td>{order?.price.toLocaleString()}</td>
+
+                                                    <td>
+                                                        <div className="product-single-qty">
+                                                            {/* <input className="horizontal-quantity form-control" type="text" /> */}
+                                                        </div>
+                                                        <WrapperQualityProduct>
+                                                            <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => handleChangeCount('decrease', order?.product)} >
+                                                                <MinusOutlined style={{ color: '#000', fontSize: '20px' }} />
+                                                            </button>
+                                                            <WrapperInputNumber onChange={onChange} size='large' value={order?.amount} />
+                                                            <button style={{ border: 'none', background: 'transparent', cursor: 'pointer' }} onClick={() => handleChangeCount('increase', order?.product)} >
+                                                                <PlusOutlined style={{ color: '#000', fontSize: '20px' }} />
+                                                            </button>
+                                                        </WrapperQualityProduct>
+                                                    </td>
+                                                    <td className="text-right"><span className="subtotal-price">{(order?.price * order?.amount).toLocaleString()}</span></td>
+                                                </tr>
+
+                                            </tbody>
+                                        )
+                                    })}
+
+
                                     <tfoot>
                                         <tr>
                                             <td colSpan={5} className="clearfix">

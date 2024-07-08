@@ -30,7 +30,6 @@ const ProductDetailsComponent = ({ idProduct }) => {
     // func lấy dữ liệu chi tiết từ product
     const fetchGetDetailsProduct = async (context) => {
         const id = context?.queryKey && context?.queryKey[1]
-
         if (id) {
             const res = await ProductService.getDetailsProduct(id)
             return res?.data

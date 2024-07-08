@@ -23,7 +23,8 @@ const ProductComponent = (props) => {
 
     // hàm handleDetailsProduct
     const handleDetailsProduct = (id) => {
-        navigate(`/product-details/${id}`)
+        // navigate(`/product-details/${id}`)
+        window.location.href = `http://localhost:3000/product-details/${id}`
     }
     return (
         // <div className="col-6 col-md-4 col-xl-3">
