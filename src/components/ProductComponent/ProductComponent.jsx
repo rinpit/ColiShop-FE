@@ -24,7 +24,7 @@ const ProductComponent = (props) => {
     // hàm handleDetailsProduct
     const handleDetailsProduct = (id) => {
         // navigate(`/product-details/${id}`)
-        window.location.href = `https://backend-colishop.onrender.com/product-details/${id}`
+        window.location.href = `https://frontend-colishop.vercel.app/product-details/${id}`
     }
     return (
         // <div className="col-6 col-md-4 col-xl-3">

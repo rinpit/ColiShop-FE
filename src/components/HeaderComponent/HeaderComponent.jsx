@@ -88,7 +88,7 @@ const HeaderComponent = () => {
                 height={50}
                 onClick={() => {
                   // navigate('/')
-                  window.location.href = 'https://backend-colishop.onrender.com/';
+                  window.location.href = 'https://frontend-colishop.vercel.app/';
                 }}
                 style={{ cursor: 'pointer' }}
               />
@@ -168,7 +168,7 @@ const HeaderComponent = () => {
                     {/* className="active" */}
                     <a onClick={() => {
                       // navigate('/') 
-                      window.location.href = 'https://backend-colishop.onrender.com/';
+                      window.location.href = 'https://frontend-colishop.vercel.app/';
                     }}>Home</a>
                   </li>
                   <li>
