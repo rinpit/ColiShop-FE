@@ -13,7 +13,10 @@ const signUpPage = () => {
       >
         <div>
           <div className="container signup-container">
-            <div className="row justify-content-center align-items-center min-vh-100">
+            <div
+              className="row justify-content-center align-items-center min-vh-100"
+              style={{ padding: "80px 0 50px 0" }}
+            >
               <div className="col-lg-10">
                 <div className="row align-items-end">
                   <div className="col-md-6 d-flex justify-content-center">

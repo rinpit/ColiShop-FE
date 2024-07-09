@@ -26,11 +26,14 @@
     text-align: center;
     margin-bottom: 2rem;
   }
+  ol.breadcrumb {
+    margin-top: 1rem;
+  }
   
   .breadcrumb-nav .breadcrumb {
     background: none;
     padding: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
   }
   
   .breadcrumb-nav .breadcrumb-item a {

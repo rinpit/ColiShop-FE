@@ -41,7 +41,7 @@ const FooterComponent = () => {
               </div>
               <div className="social-icons mt-1 mb-3">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/profile.php?id=61560179580302"
                   className="social-icon social-facebook"
                   target="_blank"
                 >
@@ -64,10 +64,7 @@ const FooterComponent = () => {
                 >
                   <i style={{ color: "black" }} className="fab fa-instagram" />
                 </a>
-
-
               </div>
-
             </div>
             <div className="col-lg-6 col-xl-3">
               <div className="widget">
@@ -112,25 +109,21 @@ const FooterComponent = () => {
                   <div className="col-sm-6">
                     <ul className="links mb-0">
                       <li>
-                        <a href="about.html">About Porto</a>
+                        <a href="/policyDHvTT">
+                          Chính Sách Đặt Hàng và Thanh Toán
+                        </a>
                       </li>
                       <li>
-                        <a href="#">Our Guarantees</a>
+                        <a href="/policyVC">Chính Sách Vận Chuyển</a>
                       </li>
                       <li>
-                        <a href="#">Terms And Conditions</a>
+                        <a href="/policyDT">Chính Sách Đổi Trả</a>
                       </li>
                       <li>
-                        <a href="#">Privacy policy</a>
+                        <a href="/policyBH">Chính Sách Bảo Hành</a>
                       </li>
                       <li>
-                        <a href="#">Return Policy</a>
-                      </li>
-                      <li>
-                        <a href="#">Intellectual Property Claims</a>
-                      </li>
-                      <li>
-                        <a href="#">Site Map</a>
+                        <a href="/policyKG">Chính Sách Ký Gửi</a>
                       </li>
                     </ul>
                   </div>
@@ -175,11 +168,11 @@ const FooterComponent = () => {
                   <h4 className="widget-title font2" style={{ color: "black" }}>
                     PHONE:
                   </h4>
-                  <a href="#">0935-536-285</a>
+                  <a href="#">0767774104 </a>
                 </div>
               </div>
               <span className="footer-time">
-                <strong>Open: </strong> Mon - Sun / 8:00AM - 5:00PM
+                <strong>Open: </strong> Mon - Sun / 7:00AM - 22:00PM
               </span>
             </div>
           </div>

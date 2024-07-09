@@ -14,7 +14,10 @@ const SignInPage = () => {
             </div>
           </div>
           <div className="container login-container">
-            <div className="row justify-content-center align-items-center min-vh-100">
+            <div
+              className="row justify-content-center align-items-center min-vh-100"
+              style={{ padding: "40px 0 80px 0" }}
+            >
               <div className="col-lg-10">
                 <div className="row">
                   <div className="col-md-6 d-flex justify-content-center align-items-center">

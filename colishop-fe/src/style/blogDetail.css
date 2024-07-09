@@ -1,0 +1,302 @@
+.post-title-detail {
+    font-size: 28px; /* Tăng kích cỡ chữ */
+    font-weight: bold; /* Đậm */
+    font-family: 'Roboto', sans-serif; /* Đổi font chữ */
+    margin-bottom: 15px;
+  }
+  
+  /* Post content detail */
+  .post-content-detail p{
+    font-size: 18px; /* Kích cỡ chữ nội dung */
+    line-height: 1.8; /* Độ cao dòng */
+    font-family: 'Roboto', sans-serif; /* Đổi font chữ */
+    margin-bottom: 30px;
+  }
+  
+  .post-content-detail h3 {
+    font-size: 24px; /* Kích cỡ chữ tiêu đề h3 */
+    font-weight: bold; /* Đậm */
+    font-family: 'Roboto', sans-serif; /* Đổi font chữ */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+/* Đặt chiều rộng và căn chỉnh cho sidebar */
+.sidebar {
+  padding: 40px;
+  background-color: #f4efe6; /* Màu nền cho sidebar */
+  border-radius: 5px;
+  position: sticky; /* Vị trí cố định */
+  top: 0; /* Giữ vị trí cố định từ đầu trang */
+  left: 0; /* Bên trái cố định */
+  width: 250px; /* Chiều rộng cố định */
+  height: 80vh; /* Chiều cao toàn bộ viewport */
+  z-index: 1000; /* Đảm bảo nằm trên các phần khác */
+}
+
+
+/* Định dạng tiêu đề widget */
+.widget-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #6b4226; /* Màu nâu vintage */
+  font-family: 'Georgia', serif; /* Font chữ vintage */
+}
+
+/* Định dạng cho ô tìm kiếm */
+.widget-search .form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #c5b09f; /* Màu nâu nhạt */
+  border-radius: 4px;
+  background-color: #f9f6f1; /* Màu kem */
+  box-sizing: border-box;
+  color: #6b4226;
+  font-family: 'Georgia', serif;
+}
+
+.widget-search .btn {
+  display: inline-block;
+  background-color: #6b4226; /* Màu nâu vintage */
+  color: #f9f6f1; /* Màu kem */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.widget-search .btn .icon-search {
+  font-size: 16px;
+}
+
+.widget-search .btn:hover {
+  background-color: #50331a; /* Màu nâu đậm hơn */
+}
+
+/* Định dạng cho danh mục categories */
+.widget-cats ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.widget-cats li {
+  margin-bottom: 10px;
+}
+
+.widget-cats li a {
+  text-decoration: none;
+  color: #6b4226; /* Màu nâu vintage */
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.widget-cats li a:hover {
+  text-decoration: underline;
+}
+
+/* Định dạng cho đoạn văn bản About Blog */
+.widget p {
+  font-size: 14px;
+  color: #6b4226; /* Màu nâu vintage */
+  font-family: 'Georgia', serif;
+}
+
+/* Định dạng cho banner quảng cáo */
+.widget-banner-sidebar .banner-sidebar-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #6b4226; /* Màu nâu vintage */
+}
+
+.widget-banner-sidebar .banner-sidebar {
+  text-align: center;
+}
+
+.widget-banner-sidebar .banner-sidebar img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Định dạng cho các thẻ tags */
+.tagcloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tagcloud a {
+  background-color: #d7ccb8; /* Màu nâu nhạt */
+  color: #6b4226; /* Màu nâu vintage */
+  padding: 5px 10px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'Georgia', serif;
+}
+
+.tagcloud a:hover {
+  background-color: #6b4226; /* Màu nâu vintage */
+  color: #f9f6f1; /* Màu kem */
+}
+
+/* Định dạng cho phần newsletter */
+.widget-newsletter p {
+  font-size: 14px;
+  color: #6b4226; /* Màu nâu vintage */
+  margin-bottom: 10px;
+  font-family: 'Georgia', serif;
+}
+
+.widget-newsletter .form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #c5b09f; /* Màu nâu nhạt */
+  border-radius: 4px;
+  background-color: #f9f6f1; /* Màu kem */
+  box-sizing: border-box;
+  color: #6b4226; /* Màu nâu vintage */
+  font-family: 'Georgia', serif;
+}
+
+.widget-newsletter .btn {
+  display: block;
+  width: 100%;
+  background-color: #6b4226; /* Màu nâu vintage */
+  color: #f9f6f1; /* Màu kem */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.widget-newsletter .btn:hover {
+  background-color: #50331a; /* Màu nâu đậm hơn */
+}
+
+.span {
+  font-size: 12px;
+}
+
+
+.post-share h3 {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+.social-facebook {
+  background-color: #3b5998;
+}
+
+.social-twitter {
+  background-color: #1da1f2;
+}
+
+.social-linkedin {
+  background-color: #0077b5;
+}
+
+.social-gplus {
+  background-color: #dd4b39;
+}
+
+.social-mail {
+  background-color: #ea4335;
+}
+.post-author h3 {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.author-content {
+  font-size: 14px;
+  color: #666;
+}
+
+.author-content a {
+  color: #6B4226;
+}
+
+.author-content a:hover {
+  text-decoration: underline;
+}
+.comment-respond h3 {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.comment-respond form .text-muted {
+  color: #666;
+  font-size: 14px;
+}
+
+.form-group label {
+  color: #6B4226;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+span{
+  font-size: 1.5rem;
+}
+
+.btn-outline-primary-2 {
+  color: #6B4226;
+  border-color: #6B4226;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary-2:hover {
+  background-color: #6B4226;
+  color: #fff;
+}
+
+.single .social-icon {
+  width: 40px;
+  height: 40px;
+}
