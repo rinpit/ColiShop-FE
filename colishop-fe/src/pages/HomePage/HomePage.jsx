@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Loading from "../../components/LoadingComponent/Loading";
 import { useDebounce } from "../../hooks/useDebounce";
 import { WrapperButtonMore } from "./style";
+import BannerComponent from "../../components/BannerComponent/BannerComponent";
 const HomePage = () => {
     // lấy state của product ra, nghĩa là lấy những data đã nhập ở thanh search đã được lưu ở redux qua bên homepage
     const searchProduct = useSelector((state) => state?.product?.search)
@@ -36,7 +37,7 @@ const HomePage = () => {
         return res;
     }
     // những query này sẽ tương ứng với context ở trên với mảng [0], [1], [2]
-    const { isLoading, data: products, isPreviousData } = useQuery({ queryKey: ['products', limit, searchDebounce], queryFn: fetchProductAll},
+    const { isLoading, data: products, isPreviousData } = useQuery({ queryKey: ['products', limit, searchDebounce], queryFn: fetchProductAll },
         { retry: 3, retryDelay: 1000, keepPreviousData: true })
     // keepPreviousData giúp giữ lại những data cũ khi load thêm sản phẩm mà kh cần reload lại trang
     // console.log("isPreviousData", products)
@@ -64,6 +65,7 @@ const HomePage = () => {
         <div className="page-wrapper">
             <section className="intro-section mb-3">
                 {/* phần homePageIntroSection */}
+                <BannerComponent />
             </section>
             {/* Wellcome to CoLi World */}
             <section className="welcome-section">

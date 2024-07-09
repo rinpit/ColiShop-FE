@@ -8,7 +8,7 @@ import { isJsonString } from './utils'
 import { jwtDecode as jwt_decode } from "jwt-decode"
 import * as UserService from "./services/UserServices"
 import { useDispatch, useSelector } from 'react-redux'
-import { updateUser } from './redux/slices/userSlice'
+import { resetUser, updateUser } from './redux/slices/userSlice'
 import Loading from './components/LoadingComponent/Loading'
 
 
@@ -40,9 +40,16 @@ function App() {
   UserService.axiosJWT.interceptors.request.use(async (config) => {
     const currentTime = new Date()
     const { decoded } = handleDecode()
+    let storageRefreshToken = localStorage.getItem('refresh_token')
+    const refreshToken = JSON.parse(storageRefreshToken)
+    const decodedRefreshToken = jwt_decode(refreshToken)
     if (decoded?.exp < currentTime.getTime() / 1000) {
-      const data = await UserService.refreshToken()
-      config.headers['token'] = `Bearer ${data?.access_token}`
+      if(decodedRefreshToken?.exp > currentTime.getTime() / 1000){
+        const data = await UserService.refreshToken(refreshToken)
+        config.headers['token'] = `Bearer ${data?.access_token}`
+      }else {
+        dispatch(resetUser())
+      }
     }
     return config;
   }, function (error) {
@@ -50,6 +57,8 @@ function App() {
   });
 
   const handleGetDetailsUser = async (id, token) => {
+    let storageRefreshToken = localStorage.getItem('refresh_token')
+    const refreshToken = JSON.parse(storageRefreshToken)
     // Đây là chỗ phát sinh ra lỗi, fix gần 3 tiếng
     // khi không có token thì không thực hiện hàm handleGetDetailsUser()
     if (!token) {
@@ -58,7 +67,7 @@ function App() {
     }
     try {
       const res = await UserService.getDetailsUser(id, token)
-      dispatch(updateUser({ ...res?.data, access_token: token }))
+      dispatch(updateUser({ ...res?.data, access_token: token, refreshToken: refreshToken }))
     } catch (error) {
       console.error('Failed to fetch user details:', error);
     }

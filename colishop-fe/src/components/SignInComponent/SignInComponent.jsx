@@ -35,6 +35,9 @@ const SignInComponent = () => {
       }
 
       localStorage.setItem('access_token', JSON.stringify(data?.access_token))
+      localStorage.setItem('refresh_token', JSON.stringify(data?.refresh_token))
+
+
       if (data?.access_token) {
         const decode = jwt_decode(data?.access_token)
         // console.log("decode", decode)
@@ -48,8 +51,11 @@ const SignInComponent = () => {
   // console.log("mutation", mutation);
 
   const handleGetDetailsUser = async (id, token) => {
+    const storage = localStorage.getItem('refresh_token')
+    const refreshToken = JSON.parse(storage)
+
     const res = await UserService.getDetailsUser(id, token)
-    dispathch(updateUser({ ...res?.data, access_token: token }))
+    dispathch(updateUser({ ...res?.data, access_token: token, refreshToken }))
   }
 
   const handleOnChangeEmail = (e) => {
