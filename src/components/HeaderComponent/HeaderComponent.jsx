@@ -88,7 +88,7 @@ const HeaderComponent = () => {
                 height={50}
                 onClick={() => {
                   // navigate('/')
-                  window.location.href = 'http://localhost:3000/';
+                  window.location.href = 'https://backend-colishop.onrender.com/';
                 }}
                 style={{ cursor: 'pointer' }}
               />
@@ -166,10 +166,10 @@ const HeaderComponent = () => {
                 <ul className="menu">
                   <li>
                     {/* className="active" */}
-                    <a onClick={() => { 
+                    <a onClick={() => {
                       // navigate('/') 
-                      window.location.href = 'http://localhost:3000/';
-                      }}>Home</a>
+                      window.location.href = 'https://backend-colishop.onrender.com/';
+                    }}>Home</a>
                   </li>
                   <li>
                     <a onClick={() => { navigate('/categories') }}>Categories</a>
