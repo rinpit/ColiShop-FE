@@ -8,7 +8,7 @@ const initialState = {
     avatar: '',
     access_token: '',
     isAdmin: false,
-    id:'',
+    id: '',
 }
 
 export const userSlice = createSlice({
@@ -16,7 +16,9 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         updateUser: (state, action) => {
-            const { name = '', email = '', access_token = '', address = '', phone = '', avatar = '', _id ='', isAdmin, refreshToken = ''} = action.payload
+            const { name = '', email = '', access_token = '', address = '', phone = '', avatar = '', _id = '', isAdmin
+                // , refreshToken = '' 
+            } = action.payload
             state.name = name;
             state.email = email;
             state.address = address;
@@ -25,7 +27,7 @@ export const userSlice = createSlice({
             state.id = _id;
             state.access_token = access_token;
             state.isAdmin = isAdmin;
-            state.refreshToken = refreshToken;
+            // state.refreshToken = refreshToken;
         },
         resetUser: (state) => {
             state.name = '';
@@ -36,6 +38,7 @@ export const userSlice = createSlice({
             state.id = '';
             state.access_token = '';
             state.isAdmin = false;
+
         },
     },
 })

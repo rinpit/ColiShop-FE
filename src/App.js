@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { routes } from './routes'
 import DefaultComponent from './components/DefaultComponent/DefaultComponent'
 import { Fragment } from 'react'
-import { ToastContainer } from 'react-toastify'
 import { isJsonString } from './utils'
 import { jwtDecode as jwt_decode } from "jwt-decode"
 import * as UserService from "./services/UserServices"
@@ -40,16 +39,26 @@ function App() {
   UserService.axiosJWT.interceptors.request.use(async (config) => {
     const currentTime = new Date()
     const { decoded } = handleDecode()
-    let storageRefreshToken = localStorage.getItem('refresh_token')
-    const refreshToken = JSON.parse(storageRefreshToken)
-    const decodedRefreshToken = jwt_decode(refreshToken)
+
+  //   let storageRefreshToken = localStorage.getItem('refresh_token')
+  //   const refreshToken = JSON.parse(storageRefreshToken)
+  //   const decodedRefreshToken = jwt_decode(refreshToken)
+  //   if (decoded?.exp < currentTime.getTime() / 1000) {
+  //     if(decodedRefreshToken?.exp > currentTime.getTime() / 1000){
+  //       const data = await UserService.refreshToken(refreshToken)
+  //       config.headers['token'] = `Bearer ${data?.access_token}`
+  //     }else {
+  //       dispatch(resetUser())
+  //     }
+  //   }
+  //   return config;
+  // }, function (error) {
+  //   return Promise.reject(error);
+  // });
+
     if (decoded?.exp < currentTime.getTime() / 1000) {
-      if(decodedRefreshToken?.exp > currentTime.getTime() / 1000){
-        const data = await UserService.refreshToken(refreshToken)
-        config.headers['token'] = `Bearer ${data?.access_token}`
-      }else {
-        dispatch(resetUser())
-      }
+      const data = await UserService.refreshToken()
+      config.headers['token'] = `Bearer ${data?.access_token}`
     }
     return config;
   }, function (error) {
@@ -57,21 +66,32 @@ function App() {
   });
 
   const handleGetDetailsUser = async (id, token) => {
-    let storageRefreshToken = localStorage.getItem('refresh_token')
-    const refreshToken = JSON.parse(storageRefreshToken)
+    // let storageRefreshToken = localStorage.getItem('refresh_token')
+    // const refreshToken = JSON.parse(storageRefreshToken)
     // Đây là chỗ phát sinh ra lỗi, fix gần 3 tiếng
     // khi không có token thì không thực hiện hàm handleGetDetailsUser()
+    // if (!token) {
+    //   console.log('No valid token available');
+    //   return;
+    // }
+    // try {
+    //   const res = await UserService.getDetailsUser(id, token)
+    //   dispatch(updateUser({ ...res?.data, access_token: token, refreshToken: refreshToken }))
+    // } catch (error) {
+    //   console.error('Failed to fetch user details:', error);
+    // }
+
+
     if (!token) {
-      console.log('No valid token available');
-      return;
-    }
-    try {
-      const res = await UserService.getDetailsUser(id, token)
-      dispatch(updateUser({ ...res?.data, access_token: token, refreshToken: refreshToken }))
-    } catch (error) {
-      console.error('Failed to fetch user details:', error);
-    }
-    // console.log("res", res)
+        console.log('No valid token available');
+        return;
+      }
+      try {
+        const res = await UserService.getDetailsUser(id, token)
+        dispatch(updateUser({ ...res?.data, access_token: token }))
+      } catch (error) {
+        console.error('Failed to fetch user details:', error);
+      }
   }
 
   return (

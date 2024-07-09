@@ -19,6 +19,7 @@ const SignInComponent = () => {
 
   const mutation = useMutationHooks(
     data => UserService.loginUser(data)
+    
   )
 
   const { data, isLoading, isSuccess } = mutation
@@ -30,17 +31,16 @@ const SignInComponent = () => {
       // check điều kiện, nếu có location thì chuyển sang location state, còn không chuyển sang trang home/categories
       if (location?.state) {
         navigate(location?.state)
-      }else {
+      } else {
         navigate('/categories')
       }
 
       localStorage.setItem('access_token', JSON.stringify(data?.access_token))
-      localStorage.setItem('refresh_token', JSON.stringify(data?.refresh_token))
+      // localStorage.setItem('refresh_token', JSON.stringify(data?.refresh_token))
 
 
       if (data?.access_token) {
         const decode = jwt_decode(data?.access_token)
-        // console.log("decode", decode)
         if (decode?.id) {
           handleGetDetailsUser(decode?.id, data?.access_token)
         }
@@ -48,14 +48,13 @@ const SignInComponent = () => {
     }
   }, [isSuccess])
 
-  // console.log("mutation", mutation);
 
   const handleGetDetailsUser = async (id, token) => {
-    const storage = localStorage.getItem('refresh_token')
-    const refreshToken = JSON.parse(storage)
+    // const storage = localStorage.getItem('refresh_token')
+    // const refreshToken = JSON.parse(storage)
 
     const res = await UserService.getDetailsUser(id, token)
-    dispathch(updateUser({ ...res?.data, access_token: token, refreshToken }))
+    dispathch(updateUser({ ...res?.data, access_token: token }))
   }
 
   const handleOnChangeEmail = (e) => {
@@ -121,13 +120,13 @@ const SignInComponent = () => {
           </a>
         </div>
         <Loading isLoading={isLoading}>
-        <button
-          type="submit"
-          className="btn btn-dark btn-md w-100"
-          onClick={handleSignIn}
-        >
-          ĐĂNG NHẬP
-        </button>
+          <button
+            type="submit"
+            className="btn btn-dark btn-md w-100"
+            onClick={handleSignIn}
+          >
+            ĐĂNG NHẬP
+          </button>
         </Loading>
       </form>
 

@@ -4,7 +4,7 @@ export const axiosJWT = axios.create()
 export const loginUser = async (data) => {
     const res = await axios
         .post(`${process.env.REACT_APP_API_URL}/user/sign-in`, data)
-    return res.data
+        return res.data
 }
 
 export const signupUser = async (data) => {
@@ -51,18 +51,24 @@ export const updateUser = async (id, access_token, data) => {
 
 
 
-export const refreshToken = async (refreshToken) => {
+// export const refreshToken = async (refreshToken) => {
+//     const res = await axios
+//         .post(`${process.env.REACT_APP_API_URL}/user/refresh-token`, {}, {
+//             // withCredentials: true
+//             headers: {
+//                 token: `Bearer ${refreshToken}`
+//             }
+//         })
+//     return res.data
+// }
+
+export const refreshToken = async () => {
     const res = await axios
-        .post(`${process.env.REACT_APP_API_URL}/user/refresh-token`, {}, {
-            // withCredentials: true
-            headers: {
-                token: `Bearer ${refreshToken}`
-            }
+        .post(`${process.env.REACT_APP_API_URL}/user/refresh-token`, {
+            withCredentials: true
         })
     return res.data
 }
-
-
 
 export const logoutUser = async () => {
     const res = await axios
